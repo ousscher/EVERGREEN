@@ -1,29 +1,15 @@
-import 'package:audioplayers/audioplayers.dart';
+
 import 'package:flutter/material.dart';
 import 'package:sorttrash/player_box.dart';
-
+typedef SetVolumeFunction = Future<void> Function(double volume);
 class SilderMusic extends StatefulWidget {
-  const SilderMusic({super.key, required double value, Key? key1}) ;
+  const SilderMusic({super.key, required double value, Key? key1,  required this.changeVolume}) ;
+  final SetVolumeFunction changeVolume;
   @override
   State<SilderMusic> createState() => _SilderMusicState();
 }
 
 class _SilderMusicState extends State<SilderMusic> {
-  final AudioPlayer _audioPlayer = AudioPlayer();
-  @override
-  void initState() {
-    super.initState();
-    _loadAudio();
-  }
-  @override
-  void dispose() {
-    _audioPlayer.release();
-    _audioPlayer.dispose();
-    super.dispose();
-  }
-  void _loadAudio() async {
-    // await _audioPlayer.play(AssetSource('https://example.com/audio.mp3'));
-  }
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -63,10 +49,12 @@ class _SilderMusicState extends State<SilderMusic> {
             value: globalVolumeMusicSettings,
             onChanged: (double value) {
               setState(() {
+                globalVolumeMusicSettings = value; // updat
+                widget.changeVolume(value);// e the state variable with the new value
               });
             },
             activeColor: const Color.fromRGBO(255, 210, 23, 5),
-            max: 10,
+            max: 1,
             min: 0,
           ),
         ),

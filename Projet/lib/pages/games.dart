@@ -4,6 +4,7 @@ import 'package:sorttrash/button.dart';
 
 import '../StartPage/settings.dart';
 import '../card_bg.dart';
+import '../player_box.dart';
 
 class GamesMenu extends StatefulWidget {
   const GamesMenu({super.key});
@@ -13,6 +14,10 @@ class GamesMenu extends StatefulWidget {
 }
 
 class _GamesMenuState extends State<GamesMenu> {
+  final roundButtonSettingsWhileLogged =  RoundButtonSettingsWhileLogged(
+    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume,);
+  final roundButtonSettings = RoundButtonSettings(
+    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, );
   bool isSignedIn = false;
   final User? user = FirebaseAuth.instance.currentUser;
   @override
@@ -61,23 +66,20 @@ class _GamesMenuState extends State<GamesMenu> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children:  [
                                 const RoundButton(
-                                    href: '/',
-                                    myIcon: Icons.home,
-                                    couleur: Color.fromRGBO(255, 210, 23, 5),
-                                    shadowColor: Color.fromRGBO(255, 210, 23, 5),
+                                  href: '/',
+                                  myIcon: Icons.home,
+                                  couleur: Color.fromRGBO(255, 210, 23, 5),
+                                  shadowColor: Color.fromRGBO(255, 210, 23, 5),
                                 ), //le premier button
                                 const RoundButton(
-                                    href: '/TrophiesPage',
-                                    myIcon: Icons
-                                        .woo_commerce,
-                                        couleur: Color.fromRGBO(255, 210, 23, 5),
+                                  href: '/TrophiesPage',
+                                  myIcon: Icons.star,
+                                  couleur: Color.fromRGBO(255, 210, 23, 5),
                                   shadowColor: Color.fromRGBO(255, 210, 23, 5),
-                                        ), //le deuxieme button
+                                ), //le deuxieme button
                                 isSignedIn ?
-                                RoundButtonSettingsWhileLogged(
-                                    myIcon: Icons.settings, value: 5)
-                                    : RoundButtonSettings(
-                                    myIcon: Icons.settings, value: 5)
+                                roundButtonSettingsWhileLogged
+                                    : roundButtonSettings
                               ]),
                         ),
                       ),

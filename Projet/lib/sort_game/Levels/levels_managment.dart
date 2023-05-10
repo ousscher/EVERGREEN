@@ -4,7 +4,7 @@ import 'package:sorttrash/player_box.dart';
 import '../Models/Objects.dart';
 import '../Models/TrashCans.dart';
 import 'Level.dart';
-
+int sortGameNumber = 1;
 class LevelManagement {
   DataBaseService dataBaseService = currentProfileIndex == 1? offlineProgress : onlineProgress;
   late Level level1 = Level(

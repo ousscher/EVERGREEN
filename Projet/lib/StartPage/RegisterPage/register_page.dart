@@ -171,6 +171,7 @@ class _RegisterPage extends State<RegisterPage> {
                                                               FontWeight.bold,
                                                           fontSize: 13),
                                                     )));
+                                            Navigator.popAndPushNamed(context,'/RegisterPage');
                                           }
                                         });
                                       }

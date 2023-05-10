@@ -1,9 +1,9 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sorttrash/card_bg.dart';
-
 import '../StartPage/settings.dart';
 import '../button.dart';
+import '../player_box.dart';
 
 class mainMenu extends StatefulWidget {
   const mainMenu({super.key});
@@ -14,6 +14,10 @@ class mainMenu extends StatefulWidget {
 
 class _mainMenuState extends State<mainMenu> {
   bool isSignedIn = false;
+  final roundButtonSettingsWhileLogged =  RoundButtonSettingsWhileLogged(
+    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume,);
+  final roundButtonSettings = RoundButtonSettings(
+    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, );
   final User? user = FirebaseAuth.instance.currentUser;
   @override
   void initState() {
@@ -62,17 +66,14 @@ class _mainMenuState extends State<mainMenu> {
                               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                               children:  [
                                 const RoundButton(
-                                    href: '/StartPage',
-                                    myIcon: Icons.home,
-                                    couleur: Color.fromRGBO(255, 210, 23, 5),
-                                   shadowColor: Color.fromRGBO(255, 210, 23, 5),
-                                    ), //le premier
-                                // button
+                                  href: '/StartPage',
+                                  myIcon: Icons.home,
+                                  couleur: Color.fromRGBO(255, 210, 23, 5),
+                                  shadowColor: Color.fromRGBO(255, 210, 23, 5),
+                                ), //le premier
                                 isSignedIn ?
-                                RoundButtonSettingsWhileLogged(
-                                    myIcon: Icons.settings, value: 5)
-                                    : RoundButtonSettings(
-                                    myIcon: Icons.settings, value: 5)
+                                roundButtonSettingsWhileLogged
+                                    : roundButtonSettings
                               ]),
                         ),
                       ),

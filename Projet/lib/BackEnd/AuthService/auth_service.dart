@@ -54,9 +54,11 @@ class AuthService {
 
   Future registerWithEmail( String email, String password ) async {
     try {
+      print(password + ' ' + email);
       await FirebaseAuth.instance
           .createUserWithEmailAndPassword(
           email: email, password: password);
+
     }
     on FirebaseAuthException catch (e) {
       print(e);

@@ -1,11 +1,14 @@
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:sorttrash/StartPage/Silder.dart';
 import 'package:sorttrash/button.dart';
-
+final globalMusicPlayerStartPage = AudioPlayer();
+final globalMusicCacheStartPage= AudioCache();
 class RoundButtonSettings extends StatelessWidget {
   final IconData myIcon;
+  final SetVolumeFunction volumeSettingsFunction;
   double value = 5;
-  RoundButtonSettings({super.key, required this.myIcon, required this.value});
+  RoundButtonSettings({super.key, required this.myIcon, required this.value, required this.volumeSettingsFunction});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -14,7 +17,7 @@ class RoundButtonSettings extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                  // contentPadding: const EdgeInsets.all(20.0),
+                // contentPadding: const EdgeInsets.all(20.0),
                   backgroundColor: Colors.transparent,
                   insetPadding: const EdgeInsets.all(10),
                   content: Center(
@@ -53,7 +56,7 @@ class RoundButtonSettings extends StatelessWidget {
                                             width: 1, color: Colors.black38),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
-                                                BorderRadius.circular(20)),
+                                            BorderRadius.circular(20)),
                                         padding: const EdgeInsets.only(
                                             left: 80,
                                             right: 80,
@@ -86,6 +89,7 @@ class RoundButtonSettings extends StatelessWidget {
                                   ),
                                   SilderMusic(
                                     value: value,
+                                    changeVolume: volumeSettingsFunction,
                                   ),
                                   const SizedBox(
                                     height: 5,
@@ -104,6 +108,7 @@ class RoundButtonSettings extends StatelessWidget {
                                   ),
                                   SilderMusic(
                                     value: value,
+                                    changeVolume: volumeSettingsFunction,
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -120,7 +125,7 @@ class RoundButtonSettings extends StatelessWidget {
                                     child: Center(
                                       child: Row(
                                         mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                        MainAxisAlignment.center,
                                         children: [
                                           const SizedBox(
                                             height: 25,
@@ -135,7 +140,7 @@ class RoundButtonSettings extends StatelessWidget {
                                                       fontSize: 25,
                                                       fontFamily: 'Digital',
                                                       fontWeight:
-                                                          FontWeight.bold),
+                                                      FontWeight.bold),
                                                 ),
                                               ),
                                             ),
@@ -167,7 +172,7 @@ class RoundButtonSettings extends StatelessWidget {
                                   ),
                                   ElevatedButton(
                                     onPressed: () async {
-                                     await Navigator.popAndPushNamed(
+                                      await Navigator.popAndPushNamed(
                                           context, '/LoginPage');
                                     },
                                     style: ElevatedButton.styleFrom(
@@ -247,8 +252,9 @@ class RoundButtonSettings extends StatelessWidget {
 class RoundButtonSettingsWhileLogged extends StatelessWidget {
   final IconData myIcon;
   double value = 5;
+  final SetVolumeFunction volumeSettingsFunction;
   RoundButtonSettingsWhileLogged(
-      {super.key, required this.myIcon, required this.value});
+      {super.key, required this.myIcon, required this.value, required this.volumeSettingsFunction});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -306,7 +312,7 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                                 width: 3, color: Colors.black38),
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
-                                                    BorderRadius.circular(20)),
+                                                BorderRadius.circular(20)),
                                             padding: const EdgeInsets.only(
                                                 left: 80,
                                                 right: 80,
@@ -339,6 +345,7 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                       ),
                                       SilderMusic(
                                         value: value,
+                                        changeVolume: volumeSettingsFunction,
                                       ),
                                       const SizedBox(
                                         height: 8,
@@ -357,6 +364,7 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                       ),
                                       SilderMusic(
                                         value: value,
+                                        changeVolume: volumeSettingsFunction,
                                       ),
                                       const SizedBox(
                                         height: 5,
@@ -424,7 +432,7 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                         },
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor:
-                                                Colors.lightBlueAccent,
+                                            Colors.lightBlueAccent,
                                             padding: const EdgeInsets.only(
                                                 left: 40,
                                                 right: 40,

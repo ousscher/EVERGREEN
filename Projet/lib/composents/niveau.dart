@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sorttrash/button.dart';
 import 'package:sorttrash/sort_game/Levels/Level.dart';
 
+import '../sort_game/Levels/levels_managment.dart';
+
 class Niveau extends StatefulWidget {
   final double height;
   final double width;
@@ -30,6 +32,7 @@ class _NiveauState extends State<Niveau> {
         children: [
           InkWell(
             onTap: () {
+              sortGameNumber  = widget.index + 1;
               if (!widget.href.returnIsLocked()) {
                 Navigator.push(
                   context,

@@ -1,4 +1,5 @@
 
+import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sorttrash/StartPage/settings.dart';
@@ -12,12 +13,29 @@ class StartPage extends StatefulWidget {
   State<StartPage> createState() => _StartPageState();
 }
 
+
 class _StartPageState extends State<StartPage> {
 
   bool isSignedIn = false;
+  final roundButtonSettingsWhileLogged =  RoundButtonSettingsWhileLogged(
+    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume,);
+  final roundButtonSettings = RoundButtonSettings(
+    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, );
   final User? user = FirebaseAuth.instance.currentUser;
   @override
+  void dispose() {
+    globalMusicCacheStartPage.clearAll();
+    globalMusicPlayerStartPage.stop();
+    super.dispose();
+  }
+  @override
   void initState() {
+    setState(() {
+      globalMusicPlayerStartPage.setReleaseMode(ReleaseMode.loop);
+      globalMusicPlayerStartPage.setVolume(0.5);
+      globalMusicCacheStartPage.load("music/gamebackground.mp3");
+      globalMusicPlayerStartPage.play(AssetSource("music/gamebackground.mp3"));
+    });
     if (user != null) {
       if (!user!.emailVerified) {
         setState(() {
@@ -32,6 +50,7 @@ class _StartPageState extends State<StartPage> {
       super.initState();
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -66,7 +85,7 @@ class _StartPageState extends State<StartPage> {
                       ),
                     ),
                   ),
-                   const SizedBox(
+                  const SizedBox(
                     height: 10,
                   ),
                   Padding(
@@ -76,16 +95,14 @@ class _StartPageState extends State<StartPage> {
                       height: 90,
                       child: Stack(
                         children: [
-                           const AnonButton(text: 'Play' ,href: '/ChildSelector',color: Color.fromRGBO(255, 210, 23, 5),),
+                          const AnonButton(text: 'Play' ,href: '/ChildSelector',color: Color.fromRGBO(255, 210, 23, 5),),
                           Positioned(
-                            left: 100,
-                            bottom: 20,
-                            child: isSignedIn ?
-                                  RoundButtonSettingsWhileLogged(
-                                      myIcon: Icons.settings, value: globalVolumeMusicSettings)
-                               : RoundButtonSettings(
-                                      myIcon: Icons.settings, value: globalVolumeMusicSettings)
-                            ),
+                              left: 100,
+                              bottom: 20,
+                              child: isSignedIn ?
+                              roundButtonSettingsWhileLogged
+                                  : roundButtonSettings
+                          ),
                         ],
                       ),
                     ),

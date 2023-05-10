@@ -7,6 +7,7 @@ import 'package:sorttrash/BackEnd/ChallengesLocalDataBase/local_challenges.dart'
 import 'package:sorttrash/button.dart';
 import 'package:sorttrash/defis/show_challenge_screen.dart';
 import '../BackEnd/PlayerProgress/player.dart';
+import '../StartPage/settings.dart';
 import '../player_box.dart';
 import 'challenge_mangement.dart';
 import 'key_container.dart';
@@ -19,11 +20,32 @@ class ChallengesScreen extends StatefulWidget {
 }
 
 class _ChallengesScreenState extends State<ChallengesScreen> {
+  final roundButtonSettingsWhileLogged =  RoundButtonSettingsWhileLogged(
+    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume,);
+  final roundButtonSettings = RoundButtonSettings(
+    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, );
+  bool isSignedIn = false;
   final ChallengeManagement challengeManagement = ChallengeManagement();
   final User? user = FirebaseAuth.instance.currentUser;
   late PlayerProgress playerProgress = currentProfileIndex == 1
       ? offlineProgress.returnParent().children[globalChildKey]
       : onlineProgress.returnParent().children[onlineGlobalChildKey];
+  @override
+  void initState() {
+    if (user != null) {
+      if (!user!.emailVerified) {
+        setState(() {
+          user!.delete();
+          FirebaseAuth.instance.signOut();
+        });
+      } else {
+        setState(() {
+          isSignedIn = true;
+        });
+      }
+      super.initState();
+    }
+  }
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -42,34 +64,36 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
               children:  [
-                 Container(
-                   width: 80,
+                Container(
+                  width: 80,
                   height: 32,
                   decoration: BoxDecoration(
-                    color: Colors.white,
-                    borderRadius: BorderRadius.circular(15)
+                      color: Colors.white,
+                      borderRadius: BorderRadius.circular(15)
                   ),
-                   child: Row(
-                     children:  [
-                       const SizedBox(width: 5,),
-                       Container(
-                         height: 22,
-                         width: 30,
-                         decoration: const BoxDecoration(
-                             image: DecorationImage( image: AssetImage('assets/images/gold_key.png'))
-                         ),
-                       ),
-                       const SizedBox(width: 10,),
-                       Text('${_countNumberOfOnesInAString(playerProgress.gamesData[3].levelsCompleted)}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, fontFamily: 'Digital', color: sm1 ),)
-                     ],
-                   ),
+                  child: Row(
+                    children:  [
+                      const SizedBox(width: 5,),
+                      Container(
+                        height: 22,
+                        width: 30,
+                        decoration: const BoxDecoration(
+                            image: DecorationImage( image: AssetImage('assets/images/gold_key.png'))
+                        ),
+                      ),
+                      const SizedBox(width: 10,),
+                      Text('${_countNumberOfOnesInAString(playerProgress.gamesData[3].levelsCompleted)}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, fontFamily: 'Digital', color: sm1 ),)
+                    ],
+                  ),
                 ),
                 SizedBox(width: MediaQuery.of(context).size.width - 240,),
                 const RoundButton(href: '/', myIcon: Icons.home_filled, couleur: Colors.greenAccent, shadowColor: Colors.greenAccent,),
                 const SizedBox(width: 5,),
-                const RoundButton(href: '/', myIcon:  Icons.star, couleur: Colors.yellow, shadowColor:  Colors.yellowAccent,),
-                const SizedBox(width: 5,),
-                const RoundButton(href: '/', myIcon: Icons.settings, couleur: Colors.yellow, shadowColor: Colors.yellowAccent,),
+                const RoundButton(href: '/TrophiesPage', myIcon:  Icons.star, couleur: Color.fromRGBO(255, 210, 23, 5), shadowColor:  Color.fromRGBO(255, 210, 23, 5),),
+                const SizedBox(width: 10,),
+                isSignedIn ?
+                roundButtonSettingsWhileLogged
+                    : roundButtonSettings,
                 const SizedBox(width: 10,),
               ],
             ),
@@ -86,18 +110,18 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
                       i < 24;
                       i++)
                         InkWell(
-                             onTap: (){
-                               if (playerProgress.lastChallengeDate != null && DateTime.now().isAfter(playerProgress.lastChallengeDate!.add(const Duration(seconds: 100)))){
-                                 playerProgress.lastChallengeDate = DateTime.now();
-                               }
-                               _updateUserData(i + 1);
+                            onTap: (){
+                              if (playerProgress.lastChallengeDate != null && DateTime.now().isAfter(playerProgress.lastChallengeDate!.add(const Duration(seconds: 100)))){
+                                playerProgress.lastChallengeDate = DateTime.now();
+                              }
+                              _updateUserData(i + 1);
 
-                               if(!challengeManagement.challengesList[i].state ){
-                                 Navigator.of(context).push(
-                                     MaterialPageRoute(builder: (context) =>  ShowChallenge(challengeInformation: globalchallengesInformationsList[i]) )
-                                 );
-                               }
-                             }
+                              if(!challengeManagement.challengesList[i].state ){
+                                Navigator.of(context).push(
+                                    MaterialPageRoute(builder: (context) =>  ShowChallenge(challengeInformation: globalchallengesInformationsList[i]) )
+                                );
+                              }
+                            }
                             ,child: challengeManagement.challengesList[i])
                     ],
                   ),

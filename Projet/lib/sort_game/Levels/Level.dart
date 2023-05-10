@@ -3,9 +3,11 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sorttrash/BackEnd/PlayerProgress/player.dart';
 import '../../composents/game_settings.dart';
+import '../../pages/bravo_widget.dart';
 import '../../player_box.dart';
 import '../Models/Objects.dart';
 import '../Models/TrashCans.dart';
+import 'levels_managment.dart';
 
 class Level extends StatefulWidget {
   late Function(bool) _changeBooleanStatus;
@@ -145,10 +147,17 @@ class _LevelState extends State<Level> {
           _player.stop();
           if (widget._arrayOfTrash.length == 1) {
             setState(() {
-              String newLevelsCompleted = playerProgress
-                  .gamesData[1].levelsCompleted
-                  .replaceFirst('0', '1');
-              playerProgress.gamesData[1].levelsCompleted = newLevelsCompleted;
+              playerProgress.score = 5*widget._copyOfArrayOfTrash.length;
+              setState(() {
+                if (sortGameNumber <
+                    playerProgress.gamesData[1].levelsCompleted.length) {
+                  List<String> characters =
+                  playerProgress.gamesData[1].levelsCompleted.split('');
+                  characters[sortGameNumber] = '1';
+                  playerProgress.gamesData[1].levelsCompleted =
+                      characters.join('');
+                }
+              });
               widget._arrayOfTrash = widget._copyOfArrayOfTrash.toList();
               widget._changeBooleanStatus(false);
             });
@@ -168,7 +177,7 @@ class _LevelState extends State<Level> {
             } catch (e) {
               print(e);
             }
-            Navigator.popAndPushNamed(context, '/Niveaux');
+            Navigator.push(context, MaterialPageRoute(builder: (context) => BravoPage(score: playerProgress.score ,)));
           }
           setState(() {
             widget._arrayOfTrash.removeWhere((trash) => trash.id == data.id);

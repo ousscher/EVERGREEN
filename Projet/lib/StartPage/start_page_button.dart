@@ -35,9 +35,9 @@ class AnonButton extends StatelessWidget {
             side: const BorderSide(width: 3, color: Colors.white),
             elevation: 0,
             shape:
-                RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+            RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
             padding:
-                const EdgeInsets.only(left: 30, right: 30, top: 8, bottom: 10)),
+            const EdgeInsets.only(left: 30, right: 30, top: 8, bottom: 10)),
         child:  Text(
           text,
           style: const TextStyle(
