@@ -12,21 +12,20 @@ class BravoPage extends StatefulWidget {
 }
 
 class _BravoPageState extends State<BravoPage> {
-  final _player = AudioPlayer();
   final _audio = AudioCache();
   @override
   void initState() {
     setState((){
       globalMusicPlayerStartPage.stop();
       _audio.load("music/finishedgame.mp3");
-      _player.play(AssetSource("music/finishedgame.mp3"));
+      globalSoundPlayerStartPage.play(AssetSource("music/finishedgame.mp3"));
     });
     super.initState();
   }
   @override
   void dispose() {
     _audio.clearAll();
-    _player.stop();
+    globalSoundPlayerStartPage.stop();
     super.dispose();
   }
   @override
@@ -125,7 +124,7 @@ class _BravoPageState extends State<BravoPage> {
                         EdgeInsets.only(left: 0.0387*MediaQuery.of(context).size.width, right: 0.0387*MediaQuery.of(context).size.width, top: 8, bottom: 10)),
                     onPressed: (){
                         setState(() {
-                          _player.stop();
+                          globalSoundPlayerStartPage.stop();
                           globalMusicPlayerStartPage.resume();
                         });
                         Navigator.pushNamed(context, '/');
