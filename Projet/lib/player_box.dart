@@ -14,7 +14,6 @@ int globalChildKey = -1;
 int onlineGlobalChildKey = -1;
 late Box playerBox;
 late Box parentBox;
-
 int currentProfileIndex = 1;
 List<PlayerProgress> offlineGlobalPlayers = [];
 List<PlayerProgress> playersOnline = [];

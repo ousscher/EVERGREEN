@@ -18,9 +18,9 @@ class _StartPageState extends State<StartPage> {
 
   bool isSignedIn = false;
   final roundButtonSettingsWhileLogged =  RoundButtonSettingsWhileLogged(
-    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume,);
+    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume);
   final roundButtonSettings = RoundButtonSettings(
-    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, );
+    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume, );
   final User? user = FirebaseAuth.instance.currentUser;
   @override
   void dispose() {

@@ -3,12 +3,14 @@ import 'package:flutter/material.dart';
 import 'package:sorttrash/StartPage/Silder.dart';
 import 'package:sorttrash/button.dart';
 final globalMusicPlayerStartPage = AudioPlayer();
+final globalSoundPlayerStartPage = AudioPlayer();
 final globalMusicCacheStartPage= AudioCache();
 class RoundButtonSettings extends StatelessWidget {
   final IconData myIcon;
   final SetVolumeFunction volumeSettingsFunction;
+  final SetVolumeFunction volumeSettingsSoundFunction;
   double value = 5;
-  RoundButtonSettings({super.key, required this.myIcon, required this.value, required this.volumeSettingsFunction});
+  RoundButtonSettings({super.key, required this.myIcon, required this.value, required this.volumeSettingsFunction, required this.volumeSettingsSoundFunction});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -108,7 +110,7 @@ class RoundButtonSettings extends StatelessWidget {
                                   ),
                                   SilderMusic(
                                     value: value,
-                                    changeVolume: volumeSettingsFunction,
+                                    changeVolume: volumeSettingsSoundFunction,
                                   ),
                                   const SizedBox(
                                     height: 10,
@@ -253,8 +255,9 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
   final IconData myIcon;
   double value = 5;
   final SetVolumeFunction volumeSettingsFunction;
+  final SetVolumeFunction volumeSettingsSoundFunction;
   RoundButtonSettingsWhileLogged(
-      {super.key, required this.myIcon, required this.value, required this.volumeSettingsFunction});
+      {super.key, required this.myIcon, required this.value, required this.volumeSettingsFunction, required this.volumeSettingsSoundFunction});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -364,7 +367,7 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                       ),
                                       SilderMusic(
                                         value: value,
-                                        changeVolume: volumeSettingsFunction,
+                                        changeVolume: volumeSettingsSoundFunction,
                                       ),
                                       const SizedBox(
                                         height: 5,

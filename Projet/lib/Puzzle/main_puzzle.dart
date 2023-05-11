@@ -8,8 +8,10 @@ import 'package:sorttrash/Puzzle/Models/Objects.dart';
 import 'package:sorttrash/Puzzle/Models/TrashCans.dart';
 import 'package:sorttrash/Puzzle/Models/puzzle_management.dart';
 import 'package:sorttrash/composents/game_settings.dart';
+import 'package:sorttrash/pages/bravo_widget.dart';
 
 import '../BackEnd/PlayerProgress/player.dart';
+import '../StartPage/settings.dart';
 import '../player_box.dart';
 import 'Models/timer.dart';
 
@@ -86,8 +88,6 @@ class _PuzzleLevelState extends State<PuzzleLevel> {
       }
     });
   }
-
-  final _player = AudioPlayer();
   final User? user = FirebaseAuth.instance.currentUser;
   final ConfettiController _controller = ConfettiController();
   late PlayerProgress playerProgress = currentProfileIndex == 1
@@ -272,6 +272,7 @@ class _PuzzleLevelState extends State<PuzzleLevel> {
               widget._changeBooleanStatus(false);
               playerProgress.score += 100;
               setState(() {
+                playerProgress.score += ((widget._copyOfarrayOfPuzzlePieces.length / widget._timeCount) * 1000).toInt();
                 if (puzzleNumber <
                     playerProgress.gamesData[0].levelsCompleted.length) {
                   List<String> characters =
@@ -303,15 +304,15 @@ class _PuzzleLevelState extends State<PuzzleLevel> {
                 widget._arrayOfSquares[i].imageName = "assets/images/empty.png";
                 i++;
               }
-              Navigator.popAndPushNamed(context, '/Puzzles');
+              Navigator.push(context, MaterialPageRoute(builder: (context) => BravoPage(score: playerProgress.score)));
             }
           });
-          _player.play(AssetSource('music/correct.mp3'));
-          _player.stop();
+          globalSoundPlayerStartPage.play(AssetSource('music/correct.mp3'));
+          globalSoundPlayerStartPage.stop();
         } else {
           time = time - 5;
-          _player.play(AssetSource('music/wrong.mp3'));
-          _player.stop();
+          globalSoundPlayerStartPage.play(AssetSource('music/wrong.mp3'));
+          globalSoundPlayerStartPage.stop();
         }
       },
     );

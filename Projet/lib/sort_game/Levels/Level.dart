@@ -2,6 +2,7 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sorttrash/BackEnd/PlayerProgress/player.dart';
+import '../../StartPage/settings.dart';
 import '../../composents/game_settings.dart';
 import '../../pages/bravo_widget.dart';
 import '../../player_box.dart';
@@ -30,8 +31,8 @@ class Level extends StatefulWidget {
   bool returnIsLocked() {
     return _isLocked;
   }
-  void setIsLocked(bool isUnlockde) {
-    _isLocked = isUnlockde;
+  void setIsLocked(bool isUnlocked) {
+    _isLocked = isUnlocked;
   }
 
 
@@ -40,7 +41,6 @@ class Level extends StatefulWidget {
 }
 
 class _LevelState extends State<Level> {
-  final _player = AudioPlayer();
   final _audio = AudioCache();
   late double screenHeight = MediaQuery.of(context).size.height;
   late double screenWidth = MediaQuery.of(context).size.width;
@@ -143,8 +143,8 @@ class _LevelState extends State<Level> {
       onWillAccept: (data) => true,
       onAccept: (data) {
         if (trashCan.trashToGoThrough.contains(data.type)) {
-          _player.play(AssetSource('music/correct.mp3'));
-          _player.stop();
+          globalSoundPlayerStartPage.play(AssetSource('music/correct.mp3'));
+          globalSoundPlayerStartPage.stop();
           if (widget._arrayOfTrash.length == 1) {
             setState(() {
               playerProgress.score = 5*widget._copyOfArrayOfTrash.length;
@@ -183,8 +183,8 @@ class _LevelState extends State<Level> {
             widget._arrayOfTrash.removeWhere((trash) => trash.id == data.id);
           });
         } else {
-          _player.play(AssetSource('music/wrong.mp3'));
-          _player.stop();
+          globalSoundPlayerStartPage.play(AssetSource('music/wrong.mp3'));
+          globalSoundPlayerStartPage.stop();
         }
       },
     );
