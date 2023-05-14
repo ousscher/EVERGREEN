@@ -32,6 +32,11 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
       : onlineProgress.returnParent().children[onlineGlobalChildKey];
   @override
   void initState() {
+    if (playerProgress.lastChallengeDate != null && _isExactlyOneDayApart(DateTime.now(),playerProgress.lastChallengeDate!) ){
+      playerProgress.lastChallengeDate = DateTime.now();
+      print('hi');
+     _updateUserData();
+    }
     if (user != null) {
       if (!user!.emailVerified) {
         setState(() {
@@ -86,9 +91,9 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
                     ],
                   ),
                 ),
-                SizedBox(width: MediaQuery.of(context).size.width - 240,),
+                SizedBox(width: MediaQuery.of(context).size.width - 250,),
                 const RoundButton(href: '/', myIcon: Icons.home_filled, couleur: Colors.greenAccent, shadowColor: Colors.greenAccent,),
-                const SizedBox(width: 5,),
+                const SizedBox(width: 10,),
                 const RoundButton(href: '/TrophiesPage', myIcon:  Icons.star, couleur: Color.fromRGBO(255, 210, 23, 5), shadowColor:  Color.fromRGBO(255, 210, 23, 5),),
                 const SizedBox(width: 10,),
                 isSignedIn ?
@@ -111,11 +116,6 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
                       i++)
                         InkWell(
                             onTap: (){
-                              if (playerProgress.lastChallengeDate != null && DateTime.now().isAfter(playerProgress.lastChallengeDate!.add(const Duration(seconds: 100)))){
-                                playerProgress.lastChallengeDate = DateTime.now();
-                              }
-                              _updateUserData(i + 1);
-
                               if(!challengeManagement.challengesList[i].state ){
                                 Navigator.of(context).push(
                                     MaterialPageRoute(builder: (context) =>  ShowChallenge(challengeInformation: globalchallengesInformationsList[i]) )
@@ -133,15 +133,12 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
       ),
     );
   }
-  void _updateUserData(int challengeNumber){
+  void _updateUserData(){
     setState(() {
-      if ( challengeNumber < playerProgress.gamesData[3].levelsCompleted.length) {
-        List<String> characters = playerProgress.gamesData[3]
-            .levelsCompleted.split('');
-        characters[challengeNumber] = '1';
-        playerProgress.gamesData[3].levelsCompleted =
-            characters.join('');
-      }
+        String newLevelsCompleted = playerProgress
+            .gamesData[3].levelsCompleted
+            .replaceFirst('0', '1');
+        playerProgress.gamesData[3].levelsCompleted = newLevelsCompleted;
     });
     try {
       if (currentProfileIndex == 1) {
@@ -169,5 +166,8 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
     }
     return count;
   }
-
+  bool _isExactlyOneDayApart(DateTime date1, DateTime date2) {
+    final difference = date2.difference(date1);
+    return difference.inDays.abs() >= 1;
+  }
 }

@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sorttrash/button.dart';
 import 'package:sorttrash/histoires/storydesign.dart';
 
+import '../StartPage/settings.dart';
+
 class levelsStory extends StatefulWidget {
   int nbrKeys;
   final List<Widget> histoires = [
@@ -64,10 +66,15 @@ class levelsStory extends StatefulWidget {
 
 class _levelsStoryState extends State<levelsStory> {
   @override
+  void initState() {
+    globalMusicPlayerStartPage.stop();
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        //le container qui contient le bg image
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/bg-image.png'),

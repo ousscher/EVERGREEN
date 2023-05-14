@@ -121,15 +121,15 @@ class _LoginPageState extends State<LoginPage> {
                                     height: 0.06*MediaQuery.of(context).size.height,
                                   ),
                                   EmailCred(
-                                      hint: 'Enter Email !',
+                                      hint: 'Entrez votre adresse e-mail !',
                                       controller: email,
                                       obscureText: false),
                                   PassCred(
                                       controller: password,
-                                      hint: 'Enter Password!',
+                                      hint: 'Entrez votre mot de passe !',
                                       obscureText: true),
                                   RegisterLoggingButton(
-                                    description: 'Register Here !',
+                                    description: 'Inscrivez-vous ici !',
                                     href: '/RegisterPage',
                                   ),
                                   SizedBox(
@@ -146,7 +146,7 @@ class _LoginPageState extends State<LoginPage> {
                                                 backgroundColor:
                                                     Colors.greenAccent,
                                                 content: Text(
-                                                  '🌐 : Trying to Login ',
+                                                  '🌐 : Tentative de connexion ',
                                                   style: TextStyle(
                                                       color: Colors.white,
                                                       fontFamily: 'Digital',
@@ -184,7 +184,7 @@ class _LoginPageState extends State<LoginPage> {
                                             top: 5,
                                             bottom: 8)),
                                     child: const Text(
-                                      'Login !',
+                                      'Connecter !',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,

@@ -118,7 +118,7 @@ class _RegisterPage extends State<RegisterPage> {
                                     height: 0.06*MediaQuery.of(context).size.height,
                                   ),
                                   EmailCred(
-                                      hint: 'Enter Email !',
+                                      hint: 'Entrez votre adresse e-mail !',
                                       controller: email,
                                       obscureText: false),
                                   const SizedBox(
@@ -126,10 +126,10 @@ class _RegisterPage extends State<RegisterPage> {
                                   ),
                                   PassCred(
                                       controller: password,
-                                      hint: 'Enter Password!',
+                                      hint: 'Entrez votre mot de passe !',
                                       obscureText: true),
                                   RegisterLoggingButton(
-                                      description: 'Login Here !',
+                                      description: 'Connecter Here !',
                                       href: '/LoginPage',
                                     ),
                                   SizedBox(
@@ -144,7 +144,7 @@ class _RegisterPage extends State<RegisterPage> {
                                             backgroundColor:
                                             Colors.greenAccent,
                                             content: Text(
-                                              '🌐 : Trying to Register ',
+                                              '🌐 : Tentative dinscription ',
                                               style: TextStyle(
                                                   color: Colors.white,
                                                   fontFamily: 'Digital',
