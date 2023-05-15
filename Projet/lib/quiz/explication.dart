@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:sorttrash/button.dart';
 
-
 class ExplicationPage extends StatelessWidget {
-  final String Explication;
-  const ExplicationPage({super.key, required this.Explication});
+  final String Explica;
+  final String SoundPath;
+  const ExplicationPage(
+      {super.key, required this.Explica, required this.SoundPath});
 
   @override
   Widget build(BuildContext context) {
@@ -38,7 +39,7 @@ class ExplicationPage extends StatelessWidget {
                 RoundButton(
                   href: '/',
                   myIcon: Icons.settings,
-                  shadowColor:Color.fromRGBO(255, 210, 23, 5) ,
+                  shadowColor: Color.fromRGBO(255, 210, 23, 5),
                   couleur: Color.fromRGBO(255, 210, 23, 5),
                 ),
                 SizedBox(
@@ -82,12 +83,12 @@ class ExplicationPage extends StatelessWidget {
                       child: Expanded(
                         child: Center(
                           child: Text(
-                            Explication,
+                            Explica,
                             textAlign: TextAlign.center,
                             style: TextStyle(
                               fontSize: 20.0,
                               color: Colors.black,
-                              fontFamily: "Degital",
+                              fontFamily: "Digitalt",
                             ),
                           ),
                         ),
@@ -98,9 +99,10 @@ class ExplicationPage extends StatelessWidget {
               ),
               Positioned(
                 top: 0.65 * MediaQuery.of(context).size.height,
-                left: 0.31*MediaQuery.of(context).size.width,
+                left: 0.31 * MediaQuery.of(context).size.width,
                 child: InkWell(
-                  onTap: () => Navigator.popUntil(context, ModalRoute.withName('/Level')),
+                  onTap: () => Navigator.popUntil(
+                      context, ModalRoute.withName('/Level')),
                   child: Stack(
                     children: [
                       Container(

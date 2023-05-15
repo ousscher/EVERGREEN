@@ -94,7 +94,7 @@ void main() async {
       '/ChildSelector': (context) => const AnonChildSelector(),
       '/TrophiesPage': (context) => const TrophiesPage(),
       '/PuzzleLevel': (context) => PuzzleLevel(
-            isLocked: false,
+            isLocked: false,    
             arrayOfPuzzlePieces: puzzleLevel1Array,
             arrayOfSquares: puzzleArray,
             matrixSSize: 4,
@@ -104,7 +104,7 @@ void main() async {
           ),
       '/conseils': (context) => Conseils(),
       "/defis" : (context) => const ChallengesScreen(),
-      '/levelsStory': (context) => levelsStory(nbrKeys: 2,),
+      '/levelsStory': (context) => levelsStory(nbrKeys: 100,),
     },
   ));
 }

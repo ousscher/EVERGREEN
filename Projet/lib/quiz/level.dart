@@ -169,24 +169,41 @@ class _LevelState extends State<Level> {
                     Container(
                       height: 0.65 * MediaQuery.of(context).size.height,
                       width: 0.55 * MediaQuery.of(context).size.width,
-                      child: Center(
-                        child: Text(
-                          (widget._currentIndex == 0)
-                              ? "Preparez vous pour ce niveau"
-                              : (widget.isFirst == true)
-                                  ? ("Soyez pret pour continuer")
-                                  : (wid2 is QuizMultiples)
-                                      ? wid2.explication
-                                      : (wid2 is QuizPhotosDesign)
-                                          ? wid2.quizPhotos.explication
-                                          : (wid2 is QuizGestes)
-                                              ? wid2.explication
-                                              : "",
-                          textAlign: TextAlign.center,
-                          style: const TextStyle(
-                            fontSize: 18.0,
-                            color: Colors.black,
-                            fontFamily: "Degital",
+                      child: InkWell(
+                        onTap: () {
+                          if (wid2 is QuizMultiples) {
+                            _player
+                                .play(AssetSource(wid2.explication.SoundPath));
+                          }
+                          if (wid2 is QuizGestes) {
+                            _player
+                                .play(AssetSource(wid2.explication.SoundPath));
+                          }
+                          if (wid2 is QuizPhotosDesign) {
+                            _player.play(AssetSource(
+                                wid2.quizPhotos.explication.SoundPath));
+                          }
+                          _player.stop();
+                        },
+                        child: Center(
+                          child: Text(
+                            (widget._currentIndex == 0)
+                                ? "Preparez vous pour ce niveau"
+                                : (widget.isFirst == true)
+                                    ? ("Soyez pret pour continuer")
+                                    : (wid2 is QuizMultiples)
+                                        ? wid2.explication.text
+                                        : (wid2 is QuizPhotosDesign)
+                                            ? wid2.quizPhotos.explication.text
+                                            : (wid2 is QuizGestes)
+                                                ? wid2.explication.text
+                                                : "",
+                            textAlign: TextAlign.center,
+                            style: const TextStyle(
+                              fontSize: 18.0,
+                              color: Colors.black,
+                              fontFamily: "Digitalt",
+                            ),
                           ),
                         ),
                       ),
@@ -200,15 +217,6 @@ class _LevelState extends State<Level> {
                 child: InkWell(
                   onTap: widget._currentIndex < widget.liste.length
                       ? () async {
-                          if (wid is QuizMultiples) {
-                            _player.play(AssetSource(wid.SoundPath));
-                          }
-                          if (wid is QuizGestes) {
-                            _player.play(AssetSource(wid.SoundPath));
-                          }
-                          if (wid is QuizPhotosDesign) {
-                            _player.play(AssetSource(wid.quizPhotos.SoundPath));
-                          }
                           final replay = await Navigator.push(
                             context,
                             MaterialPageRoute(
