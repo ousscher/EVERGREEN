@@ -679,7 +679,177 @@ class Management {
   late Level level5 = Level(
     changeBooleanStatus: decoyMethod,
     isLocked: dataBaseService.returnLockedState(4, 3),
-    liste: [],
+    liste: [
+      QuizMultiples(
+          question:
+              "Que peut-on faire avec les bouteilles en plastique recyclées ?",
+          reponse1: "Les réutiliser pour stocker des liquides",
+          reponse2:
+              "Les transformer en matière première pour fabriquer de nouveaux produits en plastique",
+          reponse3: "Les jeter à la poubelle",
+          reponse4: "Les utiliser pour faire des décorations de Noël",
+          reponseCorrecte: 2,
+          indication: Indication(
+              text:
+                  " Le recyclage des bouteilles en plastique peut aider à réduire la pollution des océans.",
+              SoundPath: "music/n5q1Ind.m4a"),
+          explication: EXPLICATION(
+              text:
+                  "Les bouteilles en plastique recyclées peuvent être transformées en matière première pour fabriquer de nouveaux produits en plastique. Le recyclage des bouteilles en plastique est important car cela permet de réduire la quantité de plastique qui finit dans les décharges et dans les océans, où il peut causer des dommages environnementaux importants.",
+              SoundPath: "music/n5q1Exp.m4a"), //il manque un audio la-ba
+          SoundPath: "music/n5q1.m4a"),
+      QuizMultiples(
+          question: "Quel matériau ne peut pas être recyclé ?",
+          reponse1: "Le verre",
+          reponse2: "Le papier",
+          reponse3: "Le plastique",
+          reponse4: "Le chewing-gum",
+          reponseCorrecte: 4,
+          indication: Indication(
+              text:
+                  "Ce matériau est souvent collant et ne se décompose pas facilement.",
+              SoundPath: "music/n5q2Ind.m4a"),
+          explication: EXPLICATION(
+              text:
+                  "Le chewing-gum ne peut pas être recyclé car il est souvent collant et ne se décompose pas facilement. Si les chewing-gums sont jetés dans la nature, ils peuvent causer des problèmes environnementaux importants, tels que la pollution des rues, des trottoirs et des espaces publics.",
+              SoundPath: "music/n5q2Exp.m4a"), //il manque un audio la-ba
+          SoundPath: "music/n5q2.m4a"),
+      QuizMultiples(
+          question: "Que peut-on faire avec des vieux vêtements ?",
+          reponse1: "Les jeter à la poubelle",
+          reponse2: "Les donner à des associations caritatives",
+          reponse3: "Les utiliser comme chiffons de nettoyage",
+          reponse4: "Toutes les réponses ci-dessus",
+          reponseCorrecte: 4,
+          indication: Indication(
+              text: "Les vieux vêtements peuvent encore avoir une utilité.",
+              SoundPath: "music/n5q3Ind.m4a"),
+          explication: EXPLICATION(
+              text:
+                  "Les vieux vêtements peuvent encore avoir une utilité. Au lieu de les jeter à la poubelle, nous pouvons les donner à des associations caritatives qui les redistribuent aux personnes dans le besoin. Nous pouvons également les utiliser comme chiffons de nettoyage pour éviter d'acheter des chiffons en papier jetables. ",
+              SoundPath: "music/n5q3Exp.m4a"), //il manque un audio la-ba
+          SoundPath: "music/n5q3.m4a"),
+      QuizMultiples(
+          question: "Quel est le matériau le plus difficile à recycler ?",
+          reponse1: "Le verre",
+          reponse2: "Le papier",
+          reponse3: "Le plastique",
+          reponse4: "Les piles",
+          reponseCorrecte: 4,
+          indication: Indication(
+              text:
+                  "Ce matériau est souvent utilisé pour fabriquer des batteries.",
+              SoundPath: "music/n5q4Ind.m4a"),
+          explication: EXPLICATION(
+              text:
+                  " Les piles sont le matériau le plus difficile à recycler. Les piles contiennent des métaux lourds et des produits chimiques qui peuvent être dangereux pour l'environnement. Si les piles ne sont pas recyclées correctement, elles peuvent causer des problèmes environnementaux importants. ",
+              SoundPath: "music/n5q4Exp.m4a"),
+          SoundPath: "music/n5q4.m4a"),
+      QuizMultiples(
+          question:
+              "Quel est le meilleur matériau pour remplacer les sacs en plastique ?",
+          reponse1: "Le papier",
+          reponse2: "Le tissu",
+          reponse3: "Le verre",
+          reponse4: "Le métal",
+          reponseCorrecte: 2,
+          indication: Indication(
+              text:
+                  "Le matériau doit être léger, résistant et facilement recyclable.",
+              SoundPath: "music/n5q5Ind.m4a"),
+          explication: EXPLICATION(
+              text:
+                  "Le meilleur matériau pour remplacer les sacs en plastique est le tissu. Les sacs en tissu peuvent être réutilisés de nombreuses fois, ce qui les rend plus durables et plus respectueux de l'environnement que les sacs en plastique à usage unique. ",
+              SoundPath: "music/n5q5Exp.m4a"),
+          SoundPath: "music/n5q5.m4a"),
+      QuizMultiples(
+          question:
+              "Quel est le principal avantage du compostage des déchets alimentaires ?",
+          reponse1: "Il réduit les émissions de gaz à effet de serre",
+          reponse2: "Il réduit la pollution de l'air",
+          reponse3: "Il augmente la fertilité du sol",
+          reponse4: "Il réduit la consommation d'eau dans les jardins",
+          reponseCorrecte: 3,
+          indication: Indication(
+              text:
+                  "Il peut être utilisé pour produire du compost riche en nutriments pour les plantes.",
+              SoundPath: "music/n5q6Ind.m4a"),
+          explication: EXPLICATION(
+              text:
+                  "Le principal avantage du compostage des déchets alimentaires est qu'il augmente la fertilité du sol, produisant du compost riche en nutriments pour les plantes.",
+              SoundPath: "music/n5q6Exp.m4a"),
+          SoundPath: "music/n5q6.m4a"),
+      QuizMultiples(
+          question:
+              "Quel est le pourcentage de déchets produits dans le monde qui est recyclé ?",
+          reponse1: "25%",
+          reponse2: "50%",
+          reponse3: "75%",
+          reponse4: "90%",
+          reponseCorrecte: 1,
+          indication: Indication(
+              text:
+                  "N'oubliez pas que certains types de déchets sont non recyclables. ",
+              SoundPath: "music/n5q7Ind.m4a"),
+          explication: EXPLICATION(
+              text:
+                  "Le recyclage est un moyen important de réduire l'impact environnemental des déchets, mais il n'est pas encore largement pratiqué dans le monde. Le taux de recyclage varie considérablement d'un pays à l'autre et même au sein d'un même pays en fonction des politiques de gestion des déchets, des infrastructures de recyclage disponibles et du comportement des individus.",
+              SoundPath: "music/n5q7Exp.m4a"),
+          SoundPath: "music/n5q7.m4a"),
+      QuizMultiples(
+          question:
+              "Quel est le meilleur moyen de réduire la quantité de déchets envoyés dans les décharges ?",
+          reponse1: "Le compostage des déchets alimentaires",
+          reponse2: "Le recyclage du papier et du carton",
+          reponse3: "L'utilisation de bouteilles d'eau réutilisables",
+          reponse4:
+              "Le don des vieux vêtements à des organisations caritatives",
+          reponseCorrecte: 1,
+          indication: Indication(
+              text:
+                  "Cette méthode de réduction des déchets utilise des déchets organiques pour produire un engrais naturel.",
+              SoundPath: "music/n5q8Ind.m4a"),
+          explication: EXPLICATION(
+              text:
+                  "Le compostage des déchets alimentaires est le meilleur moyen de réduire la quantité de déchets envoyés dans les décharges. Le compostage utilise des déchets organiques tels que les restes de nourriture et les feuilles pour produire un engrais naturel riche en nutriments qui peut être utilisé pour nourrir les plantes. ",
+              SoundPath: "music/n5q8Exp.m4a"),
+          SoundPath: "music/n5q8.m4a"),
+      QuizMultiples(
+          question: "Quel est le principal avantage du recyclage des métaux ?",
+          reponse1:
+              "Il permet de réduire la quantité de métaux extraits de la terre",
+          reponse2:
+              "Il permet de réduire les émissions de gaz à effet de serre",
+          reponse3: "Il augmente la durée de vie des produits en métal",
+          reponse4: "Il est facilement accessible pour les communautés locales",
+          reponseCorrecte: 1,
+          indication: Indication(
+              text:
+                  "Le recyclage des métaux est important car il réduit la quantité de métaux extraits de la terre.",
+              SoundPath: "music/n5q9Ind.m4a"),
+          explication: EXPLICATION(
+              text:
+                  "Le principal avantage du recyclage des métaux est qu'il permet de réduire la quantité de métaux extraits de la terre. L'extraction de métaux est un processus coûteux et énergivore qui peut avoir des conséquences environnementales négatives, notamment la destruction de habitats naturels et la pollution de l'eau et de l'air.",
+              SoundPath: "music/n5q9Exp.m4a"),
+          SoundPath: "music/n5q9.m4a"),
+      QuizMultiples(
+          question:
+              "Quel type de plastique est recyclable dans la plupart des centres de recyclage ?",
+          reponse1: "Le PVC",
+          reponse2: "Le PET",
+          reponse3: "Le polystyrène",
+          reponse4: "Le polypropylène",
+          reponseCorrecte: 2,
+          indication: Indication(
+              text:
+                  "Ce type de plastique est souvent utilisé pour fabriquer des bouteilles de soda et d'eau.",
+              SoundPath: "music/n5q10Ind.m4a"),
+          explication: EXPLICATION(
+              text:
+                  "Le PET (polyéthylène téréphtalate) est un type de plastique couramment utilisé pour fabriquer des bouteilles de soda et d'eau, et il peut être recyclé dans la plupart des centres de recyclage.",
+              SoundPath: "music/n5q10Exp.m4a"),
+          SoundPath: "music/n5q10.m4a"),
+    ],
   );
   bool decoyMethod(bool te) {
     return false;
