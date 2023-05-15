@@ -1,8 +1,24 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import '../button.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../composents/game_settings.dart';
 import 'package:audioplayers/audioplayers.dart' as audio;
+
+final _player = AudioPlayer();
+bool Indi = false;
+
+class Indication {
+  String text;
+  String SoundPath;
+  Indication({required this.text, required this.SoundPath});
+}
+
+class EXPLICATION {
+  String text;
+  String SoundPath;
+  EXPLICATION({required this.text, required this.SoundPath});
+}
 
 class QuizMultiples extends StatefulWidget {
   final String question;
@@ -11,8 +27,8 @@ class QuizMultiples extends StatefulWidget {
   final String reponse3;
   final String reponse4;
   final int reponseCorrecte; //pour indiquer le numero de la reponse correcte
-  final String indication;
-  final String explication;
+  final Indication indication;
+  final EXPLICATION explication;
   final String SoundPath;
   const QuizMultiples(
       {super.key,
@@ -33,7 +49,6 @@ class QuizMultiples extends StatefulWidget {
 class _QuizMultiplesState extends State<QuizMultiples> {
   audio.AudioPlayer audioPlayer = audio.AudioPlayer();
   AudioCache audioCache = AudioCache();
-  final _player = AudioPlayer();
   final _audio = AudioCache();
   int? reponseUtilisateur;
   String showState = "none";
@@ -43,18 +58,19 @@ class _QuizMultiplesState extends State<QuizMultiples> {
     Navigator.pop(context, false);
     // Navigator.push(context, MaterialPageRoute(builder: ((context) => const ExplicationPage(Explication: "Explication"))));
   }
+
   void replay() {
     Navigator.pop(context, true);
   }
-  void decoy(){}
 
+  void decoy() {}
 
   @override
   void initState() {
     _audio.load('music/correct.mp3');
     _audio.load('music/wrong.mp3');
-    // _audio.load(widget.SoundPath);
-    // _player.play(AssetSource(widget.SoundPath));
+    _audio.load(widget.SoundPath);
+    _player.play(AssetSource(widget.SoundPath));
     super.initState();
   }
 
@@ -71,26 +87,57 @@ class _QuizMultiplesState extends State<QuizMultiples> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
-            SizedBox(
-              height: 0.03 * MediaQuery.of(context).size.height,
-            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 Row(
-                  children: const [
+                  children: [
                     SizedBox(
                       width: 20.0,
                     ),
-                    RoundButton(
-                        href: '/Nquiz',
-                        myIcon: Icons.arrow_back,
-                        shadowColor: Color.fromARGB(255, 102, 235, 0),
-                        couleur: Color.fromARGB(255, 102, 235, 0)),
+                    InkWell(
+                      onTap: () async {
+                        _player.stop();
+                        await Navigator.popAndPushNamed(context, '/Nquiz');
+                      },
+                      child: Container(
+                        height: 40.0,
+                        width: 40.0,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(255, 102, 235, 0),
+                              spreadRadius: 0,
+                              blurRadius: 0,
+                              offset: const Offset(
+                                  0, 4.2), // changes position of shadow
+                            ),
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Center(
+                          child: Container(
+                            height: 35.0,
+                            width: 35.0,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 102, 235, 0),
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 Row(
-                  children:  [
+                  children: [
                     GamesSettings(
                       functionToBeUsed: replay,
                       functionToResumeTimer: decoy,
@@ -677,47 +724,116 @@ class _QuizMultiplesState extends State<QuizMultiples> {
                 ),
               ],
             ),
-            InkWell(
-              onTap: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (context) =>
-                          PageIndication(indication: widget.indication),
-                    ));
-              },
-              child: Container(
-                height: 40.0,
-                width: 40.0,
-                decoration: BoxDecoration(
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color.fromRGBO(255, 210, 23, 5),
-                      spreadRadius: 0,
-                      blurRadius: 0,
-                      offset: Offset(0, 4.2), // changes position of shadow
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 20.0,
                     ),
-                  ],
-                  color: Colors.white,
-                  borderRadius: BorderRadius.circular(100),
-                ),
-                child: Center(
-                  child: Container(
-                    height: 35.0,
-                    width: 35.0,
-                    decoration: BoxDecoration(
-                      color: Color.fromRGBO(255, 210, 23, 5),
-                      borderRadius: BorderRadius.circular(100),
-                    ),
-                    child: const Center(
-                      child: Icon(
-                        Icons.help_center_outlined,
-                        color: Colors.white,
+                    InkWell(
+                      onTap: () async {
+                        setState(() {
+                          _player.stop();
+                          _player.play(AssetSource(widget.SoundPath));
+                        });
+                      },
+                      child: Container(
+                        height: 40.0,
+                        width: 40.0,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromRGBO(255, 210, 23, 5),
+                              spreadRadius: 0,
+                              blurRadius: 0,
+                              offset: const Offset(
+                                  0, 4.2), // changes position of shadow
+                            ),
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Center(
+                          child: Container(
+                            height: 35.0,
+                            width: 35.0,
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(255, 210, 23, 5),
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.volume_up,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
                       ),
                     ),
-                  ),
+                  ],
                 ),
-              ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    InkWell(
+                      onTap: () async {
+                        //aaaaaaa
+                        Indi = true;
+                        setState(() {
+                          _player.stop();
+                        });
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PageIndication(
+                                  indica: widget.indication.text,
+                                  SoundPath: widget.indication.SoundPath),
+                            ));
+                      },
+                      child: Container(
+                        height: 40.0,
+                        width: 40.0,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromRGBO(255, 210, 23, 5),
+                              spreadRadius: 0,
+                              blurRadius: 0,
+                              offset: const Offset(
+                                  0, 4.2), // changes position of shadow
+                            ),
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Center(
+                          child: Container(
+                            height: 35.0,
+                            width: 35.0,
+                            decoration: BoxDecoration(
+                              color: Color.fromRGBO(255, 210, 23, 5),
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.help,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(
+                      width: 20.0,
+                    ),
+                  ],
+                ),
+              ],
             ),
           ],
         ),
@@ -726,11 +842,27 @@ class _QuizMultiplesState extends State<QuizMultiples> {
   }
 }
 
-class PageIndication extends StatelessWidget {
-  final String indication;
-  const PageIndication({super.key, required this.indication});
+class PageIndication extends StatefulWidget {
+  final String indica;
+  final String SoundPath;
+  const PageIndication(
+      {super.key, required this.indica, required this.SoundPath});
 
   @override
+  State<PageIndication> createState() => _PageIndicationState();
+}
+
+class _PageIndicationState extends State<PageIndication> {
+  final _player = AudioPlayer();
+  final _audio = AudioCache();
+  @override
+  void initState() {
+    // TODO: implement initState
+    _audio.load(widget.SoundPath);
+    _player.play(AssetSource(widget.SoundPath));
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         body: Container(
@@ -757,20 +889,20 @@ class PageIndication extends StatelessWidget {
                 height: 0.35 * MediaQuery.of(context).size.height,
                 width: 0.4 * MediaQuery.of(context).size.width,
                 child: Center(
-                  child: Expanded(
-                      child: Text(
-                    indication,
+                  child: Text(
+                    widget.indica,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
                       fontSize: 20.0,
-                      color: Colors.black,
-                      fontFamily: "Digital",
+                      color: Color.fromARGB(255, 18, 2, 81),
+                      fontFamily: "Digitalt",
                     ),
-                  )),
+                  ),
                 ),
               ),
               InkWell(
-                onTap: () => Navigator.pop(context),
+                onTap: () =>
+                    {Navigator.pop(context), _player.stop(), Indi = false},
                 child: Stack(
                   children: [
                     Container(
@@ -816,6 +948,46 @@ class PageIndication extends StatelessWidget {
                   ],
                 ),
               ),
+              InkWell(
+                onTap: () {
+                  _player.stop();
+                  _player.play(AssetSource(widget.SoundPath));
+                  _player.stop();
+                },
+                child: Container(
+                  height: 40.0,
+                  width: 40.0,
+                  decoration: BoxDecoration(
+                    boxShadow: [
+                      BoxShadow(
+                        color: Color.fromRGBO(255, 210, 23, 5),
+                        spreadRadius: 0,
+                        blurRadius: 0,
+                        offset:
+                            const Offset(0, 4.2), // changes position of shadow
+                      ),
+                    ],
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(100),
+                  ),
+                  child: Center(
+                    child: Container(
+                      height: 35.0,
+                      width: 35.0,
+                      decoration: BoxDecoration(
+                        color: Color.fromRGBO(255, 210, 23, 5),
+                        borderRadius: BorderRadius.circular(100),
+                      ),
+                      child: Center(
+                        child: Icon(
+                          Icons.volume_up,
+                          color: Colors.white,
+                        ),
+                      ),
+                    ),
+                  ),
+                ),
+              )
             ],
           ),
         ),

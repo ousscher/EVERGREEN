@@ -1,7 +1,5 @@
-
-
-
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:sorttrash/BackEnd/ChallengesLocalDataBase/local_challenges.dart';
 import 'package:sorttrash/button.dart';
@@ -9,8 +7,11 @@ import 'package:sorttrash/defis/show_challenge_screen.dart';
 import '../BackEnd/PlayerProgress/player.dart';
 import '../StartPage/settings.dart';
 import '../player_box.dart';
+import '../histoires/levelsStory.dart';
 import 'challenge_mangement.dart';
 import 'key_container.dart';
+
+int kcpt = 0;
 
 class ChallengesScreen extends StatefulWidget {
   const ChallengesScreen({Key? key}) : super(key: key);
@@ -20,10 +21,17 @@ class ChallengesScreen extends StatefulWidget {
 }
 
 class _ChallengesScreenState extends State<ChallengesScreen> {
-  final roundButtonSettingsWhileLogged =  RoundButtonSettingsWhileLogged(
-    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume);
+  final AudioPlayer audioPlayer = AudioPlayer();
+  final roundButtonSettingsWhileLogged = RoundButtonSettingsWhileLogged(
+      myIcon: Icons.settings,
+      value: globalVolumeMusicSettings,
+      volumeSettingsFunction: globalMusicPlayerStartPage.setVolume,
+      volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume);
   final roundButtonSettings = RoundButtonSettings(
-    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume );
+      myIcon: Icons.settings,
+      value: globalVolumeMusicSettings,
+      volumeSettingsFunction: globalMusicPlayerStartPage.setVolume,
+      volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume);
   bool isSignedIn = false;
   final ChallengeManagement challengeManagement = ChallengeManagement();
   final User? user = FirebaseAuth.instance.currentUser;
@@ -46,6 +54,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
       super.initState();
     }
   }
+
   @override
   Widget build(BuildContext context) {
     return Material(
@@ -59,70 +68,112 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
         ),
         child: Column(
           children: [
-            const SizedBox(height: 10,),
+            const SizedBox(
+              height: 10,
+            ),
             Row(
               mainAxisAlignment: MainAxisAlignment.end,
               crossAxisAlignment: CrossAxisAlignment.end,
-              children:  [
+              children: [
                 Container(
                   width: 80,
                   height: 32,
                   decoration: BoxDecoration(
                       color: Colors.white,
-                      borderRadius: BorderRadius.circular(15)
-                  ),
+                      borderRadius: BorderRadius.circular(15)),
                   child: Row(
-                    children:  [
-                      const SizedBox(width: 5,),
+                    children: [
+                      const SizedBox(
+                        width: 5,
+                      ),
                       Container(
                         height: 22,
                         width: 30,
                         decoration: const BoxDecoration(
-                            image: DecorationImage( image: AssetImage('assets/images/gold_key.png'))
-                        ),
+                            image: DecorationImage(
+                                image:
+                                    AssetImage('assets/images/gold_key.png'))),
                       ),
-                      const SizedBox(width: 10,),
-                      Text('${_countNumberOfOnesInAString(playerProgress.gamesData[3].levelsCompleted)}', style: const TextStyle(fontWeight: FontWeight.bold, fontSize: 15, fontFamily: 'Digital', color: sm1 ),)
+                      const SizedBox(
+                        width: 10,
+                      ),
+                      Text(
+                        '${_countNumberOfOnesInAString(playerProgress.gamesData[3].levelsCompleted)}',
+                        style: const TextStyle(
+                            fontWeight: FontWeight.bold,
+                            fontSize: 15,
+                            fontFamily: 'Digitalt',
+                            color: sm1),
+                      )
                     ],
                   ),
                 ),
-                SizedBox(width: MediaQuery.of(context).size.width - 240,),
-                const RoundButton(href: '/', myIcon: Icons.home_filled, couleur: Colors.greenAccent, shadowColor: Colors.greenAccent,),
-                const SizedBox(width: 5,),
-                const RoundButton(href: '/TrophiesPage', myIcon:  Icons.star, couleur: Color.fromRGBO(255, 210, 23, 5), shadowColor:  Color.fromRGBO(255, 210, 23, 5),),
-                const SizedBox(width: 10,),
-                isSignedIn ?
-                roundButtonSettingsWhileLogged
+                SizedBox(
+                  width: MediaQuery.of(context).size.width - 240,
+                ),
+                const RoundButton(
+                  href: '/',
+                  myIcon: Icons.home_filled,
+                  couleur: Colors.greenAccent,
+                  shadowColor: Colors.greenAccent,
+                ),
+                const SizedBox(
+                  width: 5,
+                ),
+                const RoundButton(
+                  href: '/TrophiesPage',
+                  myIcon: Icons.star,
+                  couleur: Color.fromRGBO(255, 210, 23, 5),
+                  shadowColor: Color.fromRGBO(255, 210, 23, 5),
+                ),
+                const SizedBox(
+                  width: 10,
+                ),
+                isSignedIn
+                    ? roundButtonSettingsWhileLogged
                     : roundButtonSettings,
-                const SizedBox(width: 10,),
+                const SizedBox(
+                  width: 10,
+                ),
               ],
             ),
-            const SizedBox(height: 20,),
+            const SizedBox(
+              height: 20,
+            ),
             Center(
               child: SizedBox(
-                width:  8*0.12*MediaQuery.of(context).size.width,
+                width: 8 * 0.12 * MediaQuery.of(context).size.width,
                 child: AspectRatio(
-                  aspectRatio:2.7,
+                  aspectRatio: 2.7,
                   child: GridView.count(
                     crossAxisCount: 8,
                     children: [
-                      for (int i = 0;
-                      i < 24;
-                      i++)
+                      for (int i = 0; i < 24; i++)
                         InkWell(
-                            onTap: (){
-                              if (playerProgress.lastChallengeDate != null && DateTime.now().isAfter(playerProgress.lastChallengeDate!.add(const Duration(seconds: 100)))){
-                                playerProgress.lastChallengeDate = DateTime.now();
+                            onTap: () {
+                              if (playerProgress.lastChallengeDate != null &&
+                                  DateTime.now().isAfter(playerProgress
+                                      .lastChallengeDate!
+                                      .add(const Duration(seconds: 100)))) {
+                                playerProgress.lastChallengeDate =
+                                    DateTime.now();
                               }
                               _updateUserData(i + 1);
-
-                              if(!challengeManagement.challengesList[i].state ){
-                                Navigator.of(context).push(
-                                    MaterialPageRoute(builder: (context) =>  ShowChallenge(challengeInformation: globalchallengesInformationsList[i]) )
-                                );
+                              kcpt = i + 1;
+                              if (!challengeManagement
+                                  .challengesList[i].state) {
+                                audioPlayer
+                                    .play(AssetSource("music/D${i + 1}.m4a"));
+                                int n = i + 1;
+                                Navigator.of(context).push(MaterialPageRoute(
+                                    builder: (context) => ShowChallenge(
+                                        challengeInformation:
+                                            globalchallengesInformationsList[
+                                                i])));
+                                audioPlayer.stop();
                               }
-                            }
-                            ,child: challengeManagement.challengesList[i])
+                            },
+                            child: challengeManagement.challengesList[i])
                     ],
                   ),
                 ),
@@ -133,22 +184,15 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
       ),
     );
   }
-  void _updateUserData(int challengeNumber){
-    setState(() {
-      if ( challengeNumber < playerProgress.gamesData[3].levelsCompleted.length) {
-        List<String> characters = playerProgress.gamesData[3]
-            .levelsCompleted.split('');
-        characters[challengeNumber] = '1';
-        playerProgress.gamesData[3].levelsCompleted =
-            characters.join('');
-      }
-    });
+
+  void _updateUserData(int challengeNumber) {
+
     try {
       if (currentProfileIndex == 1) {
         offlineProgress.setChild(globalChildKey, playerProgress);
         if (parentBox.isEmpty) {
           parentBox.add(offlineProgress);
-        }else{
+        } else {
           parentBox.putAt(0, offlineProgress.returnParent());
         }
       } else {
@@ -160,6 +204,7 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
       print(e);
     }
   }
+
   int _countNumberOfOnesInAString(String input) {
     int count = 0;
     for (int i = 0; i < input.length; i++) {
@@ -169,5 +214,4 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
     }
     return count;
   }
-
 }

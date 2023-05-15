@@ -1,15 +1,15 @@
 import 'package:flutter/material.dart';
+import 'package:sorttrash/quiz/quizmultiples.dart';
 import '../button.dart';
 import 'package:audioplayers/audioplayers.dart';
 import '../../composents/game_settings.dart';
-
 
 class QuizGestes extends StatefulWidget {
   final String question;
   final String photo1;
   final String photo2;
   final int reponseCorrecte;
-  final String explication;
+  final EXPLICATION explication;
   final String SoundPath;
   const QuizGestes({
     super.key,
@@ -34,16 +34,19 @@ class _QuizGestesState extends State<QuizGestes> {
     await Future.delayed(const Duration(seconds: 1));
     Navigator.pop(context);
   }
+
   void replay() {
     Navigator.pop(context, true);
   }
-  void decoy(){}
 
+  void decoy() {}
 
   @override
   void initState() {
     _audio.load('music/correct.mp3');
     _audio.load('music/wrong.mp3');
+    _audio.load(widget.SoundPath);
+    _player.play(AssetSource(widget.SoundPath));
     super.initState();
   }
 
@@ -60,51 +63,76 @@ class _QuizGestesState extends State<QuizGestes> {
         child: Column(
           children: [
             SizedBox(
-              height: 0.03 * MediaQuery.of(context).size.height,
+              height: 0.05 * MediaQuery.of(context).size.height,
             ),
-            InkWell(
-              onTap: () {},
-              child: SizedBox(
-                height: 0.15 * MediaQuery.of(context).size.height,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
-                    Row(
-                      children: const [
-                        SizedBox(
-                          width: 20.0,
-                        ),
-                        RoundButton(
-                            href: '/Nquiz',
-                            myIcon: Icons.arrow_back,
-                            shadowColor:  Color.fromRGBO(255, 210, 23, 5),
-                            couleur: Color.fromARGB(255, 102, 235, 0)),
-                      ],
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children:  [
+                    SizedBox(
+                      width: 20.0,
                     ),
-                    Row(
-                      children:  [
-                        GamesSettings(
+                   InkWell(
+                      onTap: () async {
+                        _player.stop();
+                        await Navigator.popAndPushNamed(context, '/Nquiz');
+                      },
+                      child: Container(
+                        height: 40.0,
+                        width: 40.0,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                              color: Color.fromARGB(255, 102, 235, 0),
+                              spreadRadius: 0,
+                              blurRadius: 0,
+                              offset: const Offset(
+                                  0, 4.2), // changes position of shadow
+                            ),
+                          ],
+                          color: Colors.white,
+                          borderRadius: BorderRadius.circular(100),
+                        ),
+                        child: Center(
+                          child: Container(
+                            height: 35.0,
+                            width: 35.0,
+                            decoration: BoxDecoration(
+                              color: Color.fromARGB(255, 102, 235, 0),
+                              borderRadius: BorderRadius.circular(100),
+                            ),
+                            child: Center(
+                              child: Icon(
+                                Icons.arrow_back,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  children: [
+                    GamesSettings(
                       functionToBeUsed: replay,
                       functionToResumeTimer: decoy,
                       functionToStopTimer: decoy,
                     ),
-                        SizedBox(
-                          width: 20.0,
-                        ),
-                      ],
+                    SizedBox(
+                      width: 20.0,
                     ),
                   ],
                 ),
-              ),
-            ),
-            SizedBox(
-              height: 0.02 * MediaQuery.of(context).size.height,
+              ],
             ),
             Stack(
               children: [
                 Container(
                   //le container qui contient le corps du quiz
-                  height: 0.75 * MediaQuery.of(context).size.height,
+                  height: 0.72 * MediaQuery.of(context).size.height,
                 ),
                 Positioned(
                   child: Center(
@@ -239,7 +267,7 @@ class _QuizGestesState extends State<QuizGestes> {
                                     ],
                                   ),
                                 ),
-                                SizedBox(
+                                Container(
                                   height:
                                       0.38 * MediaQuery.of(context).size.height,
                                   width:
@@ -386,6 +414,45 @@ class _QuizGestesState extends State<QuizGestes> {
                   ),
                 ),
               ],
+            ),
+            InkWell(
+              onTap: () async {
+                _player.stop();
+                _player.play(AssetSource(widget.SoundPath));
+              },
+              child: Container(
+                height: 40.0,
+                width: 40.0,
+                decoration: BoxDecoration(
+                  boxShadow: [
+                    BoxShadow(
+                      color: Color.fromRGBO(255, 210, 23, 5),
+                      spreadRadius: 0,
+                      blurRadius: 0,
+                      offset:
+                          const Offset(0, 4.2), // changes position of shadow
+                    ),
+                  ],
+                  color: Colors.white,
+                  borderRadius: BorderRadius.circular(100),
+                ),
+                child: Center(
+                  child: Container(
+                    height: 35.0,
+                    width: 35.0,
+                    decoration: BoxDecoration(
+                      color: Color.fromRGBO(255, 210, 23, 5),
+                      borderRadius: BorderRadius.circular(100),
+                    ),
+                    child: Center(
+                      child: Icon(
+                        Icons.volume_up,
+                        color: Colors.white,
+                      ),
+                    ),
+                  ),
+                ),
+              ),
             ),
           ],
         ),
