@@ -1,7 +1,8 @@
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../button.dart';
+import '../StartPage/settings.dart';
+
 
 class advice {
   final String titre;
@@ -231,6 +232,7 @@ class _ConseilsState extends State<Conseils> {
   final _audio = AudioCache();
   final User? user = FirebaseAuth.instance.currentUser;
   void initState() {
+    globalMusicPlayerStartPage.stop();
     _audio.load(widget.cons[widget.currentAdvice].SoundPath);
     _player.play(AssetSource(widget.cons[0].SoundPath));
     if (user != null) {

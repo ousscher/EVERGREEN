@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sorttrash/card_bg.dart';
+import 'package:sorttrash/histoires/levelsStory.dart';
 import '../StartPage/settings.dart';
 import '../button.dart';
 import '../player_box.dart';
@@ -85,7 +86,7 @@ class _mainMenuState extends State<mainMenu> {
                     child: Row(
                       //la ligne de widget de type cardBg
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: const [
+                      children:  [
                         cardBg(
                           title: 'GAMES',
                           coleur1: Color.fromARGB(255, 76, 218, 254),
@@ -102,7 +103,6 @@ class _mainMenuState extends State<mainMenu> {
                           coleur1: Color.fromARGB(255, 76, 218, 254),
                           coleur2: Color.fromARGB(255, 76, 218, 254),
                           couleur3: Color.fromARGB(255, 133, 216, 229),
-
                           href: '/conseils',
                           Photo: "trash2.png",
                         ),
@@ -110,12 +110,12 @@ class _mainMenuState extends State<mainMenu> {
                           width: 40,
                         ),
 
-                        cardBg(
+                        CardBgWithWidget(
                           title: 'HISTOIRES',
                           coleur1: Color.fromARGB(255, 76, 218, 254),
                           coleur2: Color.fromARGB(255, 76, 218, 254),
                           couleur3: Color.fromARGB(255, 133, 216, 229),
-                          href: '/levelsStory',
+                          href: levelsStory(nbrKeys: _countNumberOfOnesInAString(playerProgress.gamesData[3].levelsCompleted),),
                           Photo: "trash3.png",
                         ),
                       ],
@@ -128,5 +128,14 @@ class _mainMenuState extends State<mainMenu> {
         ),
       ),
     );
+  }
+  int _countNumberOfOnesInAString(String input) {
+    int count = 0;
+    for (int i = 0; i < input.length; i++) {
+      if (input[i] == '1') {
+        count++;
+      }
+    }
+    return count;
   }
 }

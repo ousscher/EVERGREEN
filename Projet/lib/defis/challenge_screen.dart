@@ -7,7 +7,6 @@ import 'package:sorttrash/defis/show_challenge_screen.dart';
 import '../BackEnd/PlayerProgress/player.dart';
 import '../StartPage/settings.dart';
 import '../player_box.dart';
-import '../histoires/levelsStory.dart';
 import 'challenge_mangement.dart';
 import 'key_container.dart';
 
@@ -42,7 +41,6 @@ class _ChallengesScreenState extends State<ChallengesScreen> {
   void initState() {
     if (playerProgress.lastChallengeDate != null && _isExactlyOneDayApart(DateTime.now(),playerProgress.lastChallengeDate!) ){
       playerProgress.lastChallengeDate = DateTime.now();
-      print('hi');
      _updateUserData();
     }
     if (user != null) {

@@ -199,6 +199,7 @@ class _AddPlayer extends State<AddPlayer> {
                                //       Navigator.pushNamed(context, '/ChildSelector');
                              }else{
                                if (user != null){
+
                                  onlineProgress.addElementProgress(
                                      childName, childAge, profileImage);
                                  onlineParentBox.put(

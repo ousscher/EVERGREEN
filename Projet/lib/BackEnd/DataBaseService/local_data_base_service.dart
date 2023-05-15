@@ -5,10 +5,10 @@ import '../PlayerProgress/player.dart';
 
 class DataBaseService {
   static final List<LevelsCompleted> newGameDataPlayer = [
-    LevelsCompleted(1, '10000000000000'),
-    LevelsCompleted(2, '10000000000000'),
-    LevelsCompleted(3, '10000000000000'),
-    LevelsCompleted(4, '10000000000000'),
+    LevelsCompleted(1, '100000000000000000000000000000000000000000000000'),
+    LevelsCompleted(2, '100000000000000000000000000000000000000000000000'),
+    LevelsCompleted(3, '100000000000000000000000000000000000000000000000'),
+    LevelsCompleted(4, '100000000000000000000000000000000000000000000000'),
   ];
   List<PlayerProgress> _players = [];
   late Parent _parent = Parent([], 0, const Uuid().v4().toString());
@@ -24,15 +24,16 @@ class DataBaseService {
         _players.add(PlayerProgress(
             0,
             [
-              LevelsCompleted(1, '10000000000000'),
-              LevelsCompleted(2, '10000000000000'),
-              LevelsCompleted(3, '10000000000000'),
-              LevelsCompleted(4, '10000000000000'),
+              LevelsCompleted(1, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(2, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(3, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(4, '100000000000000000000000000000000000000000000000'),
             ],
             DateTime.now(),
             index,
             childName,
             '$childName-${const Uuid().v4().toString().substring(0, 8)}',profileImage,DateTime.now()));
+        _parent.children = _players.toList();
         _parent.numberOfChildren++;
         parentBox.add(_parent);
       } else {
@@ -41,10 +42,10 @@ class DataBaseService {
         _players.add(PlayerProgress(
             0,
             [
-              LevelsCompleted(1, '10000000000000'),
-              LevelsCompleted(2, '10000000000000'),
-              LevelsCompleted(3, '10000000000000'),
-              LevelsCompleted(4, '10000000000000'),
+              LevelsCompleted(1, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(2, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(3, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(4, '100000000000000000000000000000000000000000000000'),
             ],
             DateTime.now(),
             index,
@@ -104,6 +105,7 @@ class DataBaseService {
   }
   deleteElementProgress(PlayerProgress playerProgress) {
     _parent.numberOfChildren--;
+    print(_players.length);
     int i = _players.indexOf(playerProgress);
     _players.remove(playerProgress);
     while (i < _players.length) {

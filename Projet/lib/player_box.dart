@@ -21,7 +21,7 @@ late Box onlineParentBox;
 DataBaseService offlineProgress = DataBaseService(offlineGlobalPlayers, offlineParent);
 Parent offlineParent = Parent([], 0, const Uuid().v4().toString());
 Parent onlineParent = Parent([], 0, const Uuid().v4().toString());
-PlayerProgress playerProgress = offlineParent.children[globalChildKey];
+PlayerProgress playerProgress = PlayerProgress(0, DataBaseService.newGameDataPlayer, DateTime.now(), 0, 'childsName', 'childGlobalUID', 'avatarProfileName', DateTime.now());
 OnlineDataBaseService onlineProgress = OnlineDataBaseService(playersOnline, onlineParent, decoyUID);
 String decoyUID = '';
 PlayerProgress globalChildSelector = PlayerProgress(0, DataBaseService.newGameDataPlayer, DateTime.now(), 15, 'childsName', 'childGlobalUID', 'avatarProfileName', DateTime.now());

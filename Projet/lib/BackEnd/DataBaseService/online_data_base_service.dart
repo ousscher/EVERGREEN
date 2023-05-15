@@ -21,10 +21,10 @@ class OnlineDataBaseService extends DataBaseService {
         addChild(PlayerProgress(
             0,
             [
-              LevelsCompleted(1, '10000000000000'),
-              LevelsCompleted(2, '10000000000000'),
-              LevelsCompleted(3, '10000000000000'),
-              LevelsCompleted(4, '10000000000000'),
+              LevelsCompleted(1, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(2, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(3, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(4, '100000000000000000000000000000000000000000000000'),
             ],
             DateTime.now(),
             index,
@@ -39,10 +39,10 @@ class OnlineDataBaseService extends DataBaseService {
         addChild(PlayerProgress(
             0,
             [
-              LevelsCompleted(1, '10000000000000'),
-              LevelsCompleted(2, '10000000000000'),
-              LevelsCompleted(3, '10000000000000'),
-              LevelsCompleted(4, '10000000000000'),
+              LevelsCompleted(1, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(2, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(3, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(4, '100000000000000000000000000000000000000000000000'),
             ],
             DateTime.now(),
             index,

@@ -31,6 +31,7 @@ class _StartPageState extends State<StartPage> {
   @override
   void initState() {
     setState(() {
+
       globalMusicPlayerStartPage.setReleaseMode(ReleaseMode.loop);
       globalMusicPlayerStartPage.setVolume(0.5);
       globalMusicCacheStartPage.load("music/gamebackground.mp3");

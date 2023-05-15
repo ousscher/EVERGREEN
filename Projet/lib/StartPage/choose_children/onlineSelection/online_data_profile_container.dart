@@ -78,7 +78,19 @@ class _OnlineProfileDataContainer extends State<OnlineProfileDataContainer> {
                                 actions: [
                                   ElevatedButton(
                                     onPressed: () {
-                                      setState(() {});
+                                      setState(() {
+                                        onlineProgress.setParent(
+                                            onlineParentBox.get(user!.uid));
+                                        playerProgress.childsName =childName;
+                                        onlineProgress.setChild(playerProgress.childID, playerProgress);
+                                        onlineProgress
+                                            .returnParent()
+                                            .updateData(
+                                            onlineProgress.getUID());
+                                        onlineParentBox.put(
+                                            onlineProgress.getUID(),
+                                            onlineProgress.returnParent());
+                                      });
                                       Navigator.pop(context);
                                     },
                                     child: const Text(
