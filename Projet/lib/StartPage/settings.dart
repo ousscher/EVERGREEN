@@ -65,7 +65,7 @@ class RoundButtonSettings extends StatelessWidget {
                                             top: 1,
                                             bottom: 3)),
                                     child: const Text(
-                                      'Settings',
+                                      'Paramètres',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -156,7 +156,7 @@ class RoundButtonSettings extends StatelessWidget {
                                             ),
                                             child: const Center(
                                               child: Text(
-                                                "EN",
+                                                "FR",
                                                 style: TextStyle(
                                                     color: Colors.white,
                                                     fontSize: 17,
@@ -186,7 +186,7 @@ class RoundButtonSettings extends StatelessWidget {
                                             top: 5,
                                             bottom: 8)),
                                     child: const Text(
-                                      'Login',
+                                      'Connecter',
                                       style: TextStyle(
                                         color: Colors.white,
                                         fontSize: 18,
@@ -322,7 +322,7 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                                 top: 1,
                                                 bottom: 3)),
                                         child: const Text(
-                                          'Settings',
+                                          'Paramètres',
                                           style: TextStyle(
                                             color: Colors.white,
                                             fontSize: 18,
@@ -412,7 +412,7 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                                 ),
                                                 child: const Center(
                                                   child: Text(
-                                                    "EN",
+                                                    "FR",
                                                     style: TextStyle(
                                                         color: Colors.white,
                                                         fontSize: 17,

@@ -88,6 +88,10 @@ class DataBaseService {
     if (playerProgress.gamesData[levelNumber].levelsCompleted[index] == '0') {
       return true;
     } else {
+      print((isExactlyOneDayApart(playerProgress.lastChallengeDate!, DateTime.now())));
+      if (playerProgress.gamesData[levelNumber].levelsCompleted[index] == '1'){
+        return false;
+      }
       if (isExactlyOneDayApart(playerProgress.lastChallengeDate!, DateTime.now())){
         return false;
       }
@@ -96,7 +100,7 @@ class DataBaseService {
   }
   bool isExactlyOneDayApart(DateTime date1, DateTime date2) {
     final difference = date2.difference(date1);
-    return difference.inSeconds.abs() == 100;
+    return difference.inDays.abs() >= 1;
   }
   deleteElementProgress(PlayerProgress playerProgress) {
     _parent.numberOfChildren--;

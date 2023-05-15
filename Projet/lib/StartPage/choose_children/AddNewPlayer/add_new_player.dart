@@ -119,7 +119,7 @@ class _AddPlayer extends State<AddPlayer> {
                             validator: (value) => value == null ||
                                 value.length > 2 ||
                                 value.isEmpty
-                                ? 'Enter 2- char password'
+                                ? 'Entrez un mot de passe de 2 caractères!'
                                 : null,
                             maxLength: 2,
                             decoration:InputDecoration(
@@ -218,7 +218,7 @@ class _AddPlayer extends State<AddPlayer> {
                            }
                            Navigator.pushNamed(context, '/ChildSelector');
                          });
-                        }, child: const Text('Done')))
+                        }, child: const Text('Terminé')))
               ],
             ),
           ),

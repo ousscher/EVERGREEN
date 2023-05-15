@@ -102,6 +102,7 @@ class _PuzzleLevelState extends State<PuzzleLevel> {
   late int correctPiecesNumber = 0;
   @override
   void initState() {
+    globalMusicPlayerStartPage.stop();
     int i = 0;
     _audio.load('music/correct.mp3');
     _audio.load('music/wrong.mp3');

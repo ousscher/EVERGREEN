@@ -128,7 +128,7 @@ class _BravoPageState extends State<BravoPage> {
                           globalMusicPlayerStartPage.resume();
                         });
                         Navigator.pushNamed(context, '/');
-                    }, child: const Text('FINI')))
+                    }, child: const Text('Terminé')))
           ],
         ),
       ),

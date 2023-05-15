@@ -1,14 +1,28 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:sorttrash/button.dart';
+import '../StartPage/settings.dart';
 import '../player_box.dart';
 import 'key_container.dart';
 
-class ShowChallenge extends StatelessWidget {
+
+class ShowChallenge extends StatefulWidget {
+
   ShowChallenge({Key? key, required this.challengeInformation})
       : super(key: key);
   final String challengeInformation;
+
+  @override
+  State<ShowChallenge> createState() => _ShowChallengeState();
+}
+
+class _ShowChallengeState extends State<ShowChallenge> {
   final User? user = FirebaseAuth.instance.currentUser;
+  @override
+  void initState() {
+    globalMusicPlayerStartPage.stop();
+    super.initState();
+  }
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -68,23 +82,17 @@ class ShowChallenge extends StatelessWidget {
                         ),
                       ),
                     ),
-                    SizedBox(
-                      height: 0.05555 * MediaQuery.of(context).size.height,
-                    ),
-                    Center(
-                        child: Text(
-                      challengeInformation,
-                      textAlign: TextAlign.center,
-                      style: const TextStyle(
-                        fontSize: 14,
-                        fontFamily: 'Digitalt',
-                        color: sm1,
-                      ),
-                    ))
+                    SizedBox(height: 0.05555*MediaQuery.of(context).size.height,),
+                    Center(child : Text( widget.challengeInformation,textAlign: TextAlign.center, style: const TextStyle( fontSize: 14, fontFamily: 'Digital',color: sm1, ),))
+
                   ],
                 ),
               ),
             ),
+
+            Positioned(left : 0.65*MediaQuery.of(context).size.width,
+                top: 0.21666*MediaQuery.of(context).size.height,
+                child: const RoundButton(myIcon: Icons.exit_to_app, href: '/games', couleur: Color.fromRGBO(255,221,80, 1), shadowColor: Colors.transparent,)),
             Positioned(
                 left: 0.65 * MediaQuery.of(context).size.width,
                 top: 0.21666 * MediaQuery.of(context).size.height,
@@ -132,8 +140,17 @@ class ShowChallenge extends StatelessWidget {
                       } catch (e) {
                         print(e);
                       }
-                    },
-                    child: Text('Done')))
+
+                    } else {
+                      onlineProgress.setChild(onlineGlobalChildKey, playerProgress);
+                      onlineParentBox.put(user!.uid, onlineProgress.returnParent());
+                      onlineProgress.returnParent().updateData(onlineProgress.getUID());
+                    }
+                  } catch (e) {
+                    print(e);
+                  }
+                  Navigator.pushNamed(context, '/games');
+                }, child: Text('Terminé')))
           ],
         ),
       ),

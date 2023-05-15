@@ -60,6 +60,7 @@ class _LevelState extends State<Level> {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+
         width: double.infinity,
         height: double.infinity,
         decoration: const BoxDecoration(
@@ -120,6 +121,7 @@ class _LevelState extends State<Level> {
 
   @override
   void initState() {
+    globalMusicPlayerStartPage.stop();
     widget._copyOfArrayOfTrash.shuffle();
     widget._arrayOfTrash = widget._copyOfArrayOfTrash;
     _audio.load('music/correct.mp3');

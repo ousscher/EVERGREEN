@@ -5,6 +5,8 @@ import 'package:video_player/video_player.dart';
 import '../defis/challenge_screen.dart';
 import '../../composents/game_settings.dart';
 
+import '../StartPage/settings.dart';
+
 class levelsStory extends StatefulWidget {
   final List<dynamic> histoires = [
     storyDesign(storys: [
@@ -78,10 +80,12 @@ class _levelsStoryState extends State<levelsStory> {
   @override
   @override
   void initState() {
-    super.initState();
     hasEnoughKeys = List.generate(widget.histoires.length, (index) => false);
+    globalMusicPlayerStartPage.stop();
+    super.initState();
   }
 
+  @override
   Widget build(BuildContext context) {
     if (widget.nbrKeys >= 1) {
       hasEnoughKeys[0] = true;
@@ -103,7 +107,6 @@ class _levelsStoryState extends State<levelsStory> {
     }
     return Scaffold(
       body: Container(
-        //le container qui contient le bg image
         decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/bg-image.png'),

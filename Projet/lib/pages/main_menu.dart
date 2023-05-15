@@ -21,6 +21,7 @@ class _mainMenuState extends State<mainMenu> {
   final User? user = FirebaseAuth.instance.currentUser;
   @override
   void initState() {
+    globalMusicPlayerStartPage.resume();
     if (user != null) {
       if (!user!.emailVerified) {
         setState(() {

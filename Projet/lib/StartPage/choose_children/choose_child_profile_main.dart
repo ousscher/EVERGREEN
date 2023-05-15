@@ -29,9 +29,9 @@ class _AnonChildSelector extends State<AnonChildSelector> {
             currentProfileIndex = index;
           }),
           items: const [
-            BottomNavigationBarItem(icon: Icon(Icons.wifi, size: 20, ), label: 'Online Profiles', backgroundColor: Colors.greenAccent),
-            BottomNavigationBarItem(icon: Icon(Icons.signal_wifi_connected_no_internet_4_sharp, size: 20,), label: 'Offline', backgroundColor: Colors.redAccent),
-            BottomNavigationBarItem(icon: Icon(Icons.leaderboard, size: 20,), label: 'LeaderBoard', backgroundColor: Colors.redAccent, ),
+            BottomNavigationBarItem(icon: Icon(Icons.wifi, size: 20, ), label: 'Profils en ligne', backgroundColor: Colors.greenAccent),
+            BottomNavigationBarItem(icon: Icon(Icons.signal_wifi_connected_no_internet_4_sharp, size: 20,), label: 'Hors Ligne', backgroundColor: Colors.redAccent),
+            BottomNavigationBarItem(icon: Icon(Icons.leaderboard, size: 20,), label: 'Classement', backgroundColor: Colors.redAccent, ),
           ],
         ),
       ),

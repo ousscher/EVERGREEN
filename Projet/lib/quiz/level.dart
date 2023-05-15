@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../BackEnd/PlayerProgress/player.dart';
+import '../StartPage/settings.dart';
 import '../player_box.dart';
 import 'quizphotos.dart';
 import 'package:sorttrash/quiz/quizmultiples.dart';
@@ -40,14 +41,14 @@ class Level extends StatefulWidget {
 class _LevelState extends State<Level> {
   final User? user = FirebaseAuth.instance.currentUser;
   final _player = AudioPlayer();
-  final _audio = AudioCache();
+  
   bool isInitialized = false;
   late PlayerProgress playerProgress = currentProfileIndex == 1
       ? offlineProgress.returnParent().children[globalChildKey]
       : onlineProgress.returnParent().children[onlineGlobalChildKey];
   @override
   void initState() {
-    // TODO: implement initState
+    globalMusicPlayerStartPage.stop();
     super.initState();
     widget._currentIndex = 0;
     if (widget._currentIndex == widget.liste.length) widget._currentIndex = 0;
