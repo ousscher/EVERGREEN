@@ -98,7 +98,7 @@ class _StartPageState extends State<StartPage> {
                           const AnonButton(text: 'Jouer' ,href: '/ChildSelector',color: Color.fromRGBO(255, 210, 23, 5),),
                           Positioned(
                               left: 100,
-                              bottom: 20,
+                              bottom: 7,
                               child: isSignedIn ?
                               roundButtonSettingsWhileLogged
                                   : roundButtonSettings

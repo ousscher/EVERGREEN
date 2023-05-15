@@ -68,7 +68,7 @@ class _BravoPageState extends State<BravoPage> {
 
                 child: Column(
                   children: [
-                    const SizedBox(height: 60,),
+                    SizedBox(height: 0.17*MediaQuery.of(context).size.height,),
                     const Text('Score', textAlign: TextAlign.center,style: TextStyle(color: Color.fromRGBO(96,207,255,1), fontWeight: FontWeight.bold, fontFamily: 'Digital', fontSize: 20), ),
                     const SizedBox(height: 10,),
                     Center(child : Container(
@@ -99,8 +99,8 @@ class _BravoPageState extends State<BravoPage> {
               ),
             ),
             Positioned(
-              left: 265,
-              top: 50,
+              left: 0.732*MediaQuery.of(context).size.height,
+              top: 0.06468*MediaQuery.of(context).size.width,
               child: Container(
                 width: 0.32*MediaQuery.of(context).size.width,
                 height:0.22*MediaQuery.of(context).size.height ,
@@ -111,7 +111,7 @@ class _BravoPageState extends State<BravoPage> {
               ),
             ),
             Positioned(
-                left: 0.437*MediaQuery.of(context).size.width,
+                left: 0.42*MediaQuery.of(context).size.width,
                 top: 0.694444*MediaQuery.of(context).size.height,
                 child: ElevatedButton(
                     style: ElevatedButton.styleFrom(

@@ -20,6 +20,7 @@ class _VerifyUserEmailState extends State<VerifyUserEmail> {
   @override
   void initState() {
     user = FirebaseAuth.instance.currentUser!;
+
     user.sendEmailVerification();
     timer = Timer.periodic(const Duration(seconds: 3), (timer) {
       verifyUser();

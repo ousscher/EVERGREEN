@@ -86,7 +86,7 @@ class _OfflineProfilesSelectionState extends State<OfflineProfilesSelection> {
                               } else {
                                 FloatingSnackBar(
                                   message:
-                                      '📢 : Please Choose A Child Profile! ',
+                                      '📢 : Veuillez choisir un profil enfant! ',
                                   context: context,
                                   textColor: Colors.black,
                                   textStyle: const TextStyle(
@@ -99,7 +99,7 @@ class _OfflineProfilesSelectionState extends State<OfflineProfilesSelection> {
                               }
                             },
                             child: const Text(
-                              'Play',
+                              'Jouer',
                               style: TextStyle(
                                 fontFamily: 'Digital',
                               ),
@@ -107,39 +107,6 @@ class _OfflineProfilesSelectionState extends State<OfflineProfilesSelection> {
                         const SizedBox(
                           width: 5,
                         ),
-                        ElevatedButton(
-                            style: ElevatedButton.styleFrom(
-                                backgroundColor: sm1,
-                                side: const BorderSide(
-                                    width: 3, color: Colors.white),
-                                elevation: 0,
-                                shape: RoundedRectangleBorder(
-                                    borderRadius: BorderRadius.circular(20)),
-                                padding: const EdgeInsets.only(
-                                    left: 30, right: 30, top: 8, bottom: 10)),
-                            onPressed: () {
-                              if (parentBox.isNotEmpty) {
-                                if (user != null) {
-                                  setState(() {
-                                    _appendOfflineDataOnline();
-                                  });
-                                } else {
-                                  FloatingSnackBar(
-                                    message: '📢 : Please Log in Or Register ',
-                                    context: context,
-                                    textColor: Colors.black,
-                                    textStyle: const TextStyle(
-                                        color: Colors.white,
-                                        fontFamily: 'Digital',
-                                        fontSize: 16),
-                                    duration:
-                                        const Duration(milliseconds: 3000),
-                                    backgroundColor: Colors.redAccent,
-                                  );
-                                }
-                              }
-                            },
-                            child: const Text('ONL/OFL')),
                         const SizedBox(
                           width: 5,
                         ),
@@ -153,7 +120,12 @@ class _OfflineProfilesSelectionState extends State<OfflineProfilesSelection> {
                                     borderRadius: BorderRadius.circular(20)),
                                 padding: const EdgeInsets.only(
                                     left: 30, right: 30, top: 8, bottom: 10)),
-                            child: const Icon(Icons.add),
+                            child: const Text(
+                              'Ajouter',
+                              style: TextStyle(
+                                fontFamily: 'Digital',
+                              ),
+                            ),
                             onPressed: () {
                               Navigator.pushNamed(context, '/AddPlayer');
                             }),
@@ -173,11 +145,7 @@ class _OfflineProfilesSelectionState extends State<OfflineProfilesSelection> {
     );
   }
 
-  void _appendOfflineDataOnline() {
-    onlineProgress.appendDataAndSave(offlineProgress.returnParent());
-    playersOnline = onlineProgress.returnPlayers();
-    onlineProgress.returnParent().updateData(onlineProgress.getUID());
-  }
+
 
   void _startOfflineSession() {
     offlineProgress.setChild(
