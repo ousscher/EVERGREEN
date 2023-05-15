@@ -115,7 +115,7 @@ class _OnlineProfileDataContainer extends State<OnlineProfileDataContainer> {
                                       onlineParentBox.put(
                                           onlineProgress.getUID(),
                                           onlineProgress.returnParent());
-                                      Navigator.pop(context);
+                                      Navigator.popAndPushNamed(context, '/ChildSelector');
                                     },
                                     child: const Text(
                                       'Delete',

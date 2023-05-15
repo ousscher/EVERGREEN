@@ -72,21 +72,15 @@ class _OnlineProfilesSelection extends State<OnlineProfilesSelection> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    Column(
-                      mainAxisAlignment: MainAxisAlignment.start,
-                      children: [
-                        ...playersOnline.map((e) => OnlineProfileDataContainer(playerProgress: e)),
-                      ],
-                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         const RoundButton(
-                            myIcon: Icons.home,
-                            href: '/StartPage',
-                            couleur: Colors.greenAccent,
-                            shadowColor: Colors.greenAccent,
-                          ),
+                          myIcon: Icons.home,
+                          href: '/StartPage',
+                          couleur: Colors.greenAccent,
+                          shadowColor: Colors.greenAccent,
+                        ),
                         const SizedBox(width: 5,),
                         ElevatedButton(
                             style: ElevatedButton.styleFrom(
@@ -104,7 +98,7 @@ class _OnlineProfilesSelection extends State<OnlineProfilesSelection> {
                               } else {
                                 FloatingSnackBar(
                                   message:
-                                      '📢 : Please Choose A Child Profile! ',
+                                  '📢 : Please Choose A Child Profile! ',
                                   context: context,
                                   textColor: Colors.black,
                                   textStyle: const TextStyle(
@@ -138,6 +132,13 @@ class _OnlineProfilesSelection extends State<OnlineProfilesSelection> {
                             }),
                       ],
                     ),
+                    Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      children: [
+                        ...playersOnline.map((e) => OnlineProfileDataContainer(playerProgress: e)),
+                      ],
+                    ),
+
                   ],
                 ),
               ),
