@@ -125,8 +125,8 @@ class Parent {
       print(e);
     }
   }
-  Stream<List<Parent>> readParents() => FirebaseFirestore.instance.collection('parent').snapshots().map((event) => event.docs.map((e) => Parent.fromJson(e.data())).toList());
-  void updateData(String dataId) { //retourner toute la liste des parents de la base de données
+  Stream<List<Parent>> readParents() => FirebaseFirestore.instance.collection('parent').snapshots().map((event) => event.docs.map((e) => Parent.fromJson(e.data())).toList()); //retourner toute la liste des parents de la base de données
+  void updateData(String dataId) { // Un procedure qui permet de faire une mise a jour du parent actuel dans la base des données FireBase
    try{
      final CollectionReference parentCollection =
      FirebaseFirestore.instance.collection('parent');
@@ -139,21 +139,6 @@ class Parent {
    } catch (e){
      print(e);
    }
-  }
-  Future<bool> isUserAlreadyLoggedIn() async {
-    final User? user = FirebaseAuth.instance.currentUser;
-    final snapshot =
-    await FirebaseFirestore.instance.collection('parent').doc(user!.uid).get();
-    final deviceId = snapshot.data()!['parentUUID'];
-    print(deviceId);
-    print(parentUUID);
-    return deviceId != parentUUID;
-  }
-  void putOnlineDataToLocal() {
-    final User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      onlineParentBox.put(user.uid, this);
-    }
   }
 }
 
