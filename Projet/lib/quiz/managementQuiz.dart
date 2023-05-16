@@ -5,7 +5,7 @@ import 'package:sorttrash/quiz/quizphotos.dart';
 import '../BackEnd/DataBaseService/local_data_base_service.dart';
 import 'level.dart';
 
-class Management {
+class Management { //la classe pour faire la gestion de niveau de quiz 
   DataBaseService dataBaseService =
       currentProfileIndex == 1 ? offlineProgress : onlineProgress;
   late Level level1 = Level(
