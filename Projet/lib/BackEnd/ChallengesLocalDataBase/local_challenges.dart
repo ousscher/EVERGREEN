@@ -1,8 +1,6 @@
 
 
-import 'package:hive/hive.dart';
 
-late Box challengesGlobalBox;
 List<String> globalchallengesInformationsList =[
 'FABRIQUEZ DES PETITS BACS EN CARTON   DE RECYCLAGE ET COLOREZ LES POUR LA MAISON.',
 'Utiliser des sacs réutilisables dans votre course.',
@@ -42,12 +40,4 @@ List<String> globalchallengesInformationsList =[
   'Dirigez-vous vers un centre de recyclage local et regardez un peu du processus se dérouler.',
   'PRÉPAREZ UN DÉJEUNER SANS DÉCHETS.',
 ];
-
-List<Map<String, dynamic>> challengesList = List.generate(globalchallengesInformationsList.length, (index) =>
-{
-  'challengeInformation' : globalchallengesInformationsList[index],
-  'challengeAudio' : 'assets/audio/D${index+1}.m4a'
-});
-
-
 
