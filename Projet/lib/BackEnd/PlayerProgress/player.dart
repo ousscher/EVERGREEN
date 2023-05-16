@@ -9,23 +9,24 @@ part 'player.g.dart';
 @HiveType(typeId: 1)
 class PlayerProgress {
   @HiveField(0)
-  late int score;
+  late int score; // score du joueur
   @HiveField(1)
-  late int childID;
+  late int childID; // id ju joueur
   @HiveField(2)
-  late List<LevelsCompleted> gamesData;
+  late List<LevelsCompleted> gamesData; // données du joueuer
   @HiveField(3)
-  late DateTime lastTimeToJoin;
+  late DateTime lastTimeToJoin;  // Date du derniere date l'enfant a rejoindre le jeu
   @HiveField(4)
-  late String? childsName;
+  late String? childsName; // Nom de l'enfant
   @HiveField(5)
-  late String? childGlobalUID;
+  late String? childGlobalUID; // UID global de l'enfant
   @HiveField(6)
-  late String? avatarProfileName;
+  late String? avatarProfileName; // Nom du profil de l'avatar
   @HiveField(7)
-  late DateTime? lastChallengeDate;
+  late DateTime? lastChallengeDate; // Date du dernier défi
   PlayerProgress(this.score, this.gamesData, this.lastTimeToJoin, this.childID,
       this.childsName, this.childGlobalUID, this.avatarProfileName, this.lastChallengeDate);
+    // Constructeur PlayerProgress à partir d'un objet JSON
   factory PlayerProgress.fromJson(Map<String, dynamic> json) {
     List<dynamic> gamesDataJson = json['gamesData'];
     List<LevelsCompleted> gamesData = gamesDataJson.map((gameJson) => LevelsCompleted.fromJson(gameJson)).toList();
@@ -40,6 +41,7 @@ class PlayerProgress {
       DateTime.parse(json['lastChallengeDate'] as String),
     );
   }
+    // Convertit l'objet PlayerProgress en JSON
   Map<String, dynamic> toJson() {
     return {
       'score': score,
@@ -53,21 +55,21 @@ class PlayerProgress {
     };
   }
 }
-
+// class du données d'un seul jeu
 @HiveType(typeId: 2)
 class LevelsCompleted {
   @HiveField(0)
-  late int id;
+  late int id; // le ID
   @HiveField(1)
-  late String levelsCompleted;
+  late String levelsCompleted; // BIT MAP
   LevelsCompleted(this.id, this.levelsCompleted);
-  Map<String, dynamic> toJson() {
+  Map<String, dynamic> toJson() { // constructor à partir d'un objet JSON
     return {
       'id': id,
       'levelsCompleted': levelsCompleted,
     };
   }
-
+  // Convertit l'objet LevelsCompleted en JSON
   factory LevelsCompleted.fromJson(Map<String, dynamic> json) {
     return LevelsCompleted(
       json['id'] as int,
@@ -76,11 +78,11 @@ class LevelsCompleted {
   }
 
 }
-
+// La classe du parent
 @HiveType(typeId: 3)
 class Parent {
   @HiveField(0)
-  late List<PlayerProgress> _children = [];
+  late List<PlayerProgress> _children = []; // la liste des enfants
 
   List<PlayerProgress> get children => _children;
 
@@ -88,9 +90,9 @@ class Parent {
     _children = value;
   }
   @HiveField(1)
-  late int _numberOfChildren;
+  late int _numberOfChildren; // le nobre des enfants
   @HiveField(2)
-  late String? parentUUID;
+  late String? parentUUID; // le UID du parent
   int get numberOfChildren => _numberOfChildren;
 
   set numberOfChildren(int value) {
@@ -104,7 +106,7 @@ class Parent {
         .toList();
     return Parent(children, json['childrenNumber'], json['parentUUID']);
   }
-  createData( String uid) {
+  createData( String uid) { // création d'un nouveau parent dans la base de données en ligne
     final CollectionReference parentCollection =
         FirebaseFirestore.instance.collection('parent');
     final json = {
@@ -114,7 +116,7 @@ class Parent {
     };
     parentCollection.doc(uid).set(json);
   }
-  Future fetchParentData(String uuid) async {
+  Future fetchParentData(String uuid) async { // obtenir des données de la base de données en ligne pour le parent
     try{
       DocumentSnapshot snapshot =
       await FirebaseFirestore.instance.collection('parent').doc(uuid).get();
@@ -124,7 +126,7 @@ class Parent {
     }
   }
   Stream<List<Parent>> readParents() => FirebaseFirestore.instance.collection('parent').snapshots().map((event) => event.docs.map((e) => Parent.fromJson(e.data())).toList());
-  void updateData(String dataId) {
+  void updateData(String dataId) { //retourner toute la liste des parents de la base de données
    try{
      final CollectionReference parentCollection =
      FirebaseFirestore.instance.collection('parent');
