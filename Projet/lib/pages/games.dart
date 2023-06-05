@@ -15,9 +15,9 @@ class GamesMenu extends StatefulWidget {
 
 class _GamesMenuState extends State<GamesMenu> {
   final roundButtonSettingsWhileLogged =  RoundButtonSettingsWhileLogged(
-    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume);
+    href: '/games',myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume);
   final roundButtonSettings = RoundButtonSettings(
-    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume );
+   href: '/games', myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume );
   bool isSignedIn = false;
   final User? user = FirebaseAuth.instance.currentUser;
   @override

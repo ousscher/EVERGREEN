@@ -53,6 +53,7 @@ dependencies:
   firebase_database: ^10.1.1
   internet_connection_checker: ^1.0.0+1
   carousel_slider: ^4.2.1
+  percent_indicator: ^4.0.1
   flutter_local_notifications: ^14.0.0+1
 flutter_native_splash:
   color: "#f5cb42"
@@ -126,6 +127,7 @@ flutter:
     - assets/images/puzzle/level1/
     - assets/images/puzzle/level2/
     - assets/images/puzzle/level3/
+    - assets/images/puzzle/Level4/
     - assets/images/puzzle/level5/
     - assets/images/trophies/
     - assets/images/quiz/niveau1/

@@ -12,7 +12,7 @@ import 'package:sorttrash/StartPage/choose_children/choose_child_profile_main.da
 import 'package:sorttrash/pages/niveaux.dart';
 import 'package:sorttrash/pages/trophies_page.dart';
 import 'package:sorttrash/player_box.dart';
-import 'package:sorttrash/profile.dart';
+import 'package:sorttrash/StartPage/ProfilePage/profile.dart';
 import 'BackEnd/AuthService/verify_user.dart';
 import 'BackEnd/PlayerProgress/player.dart';
 import 'Puzzle/Models/Objects.dart';
@@ -79,7 +79,7 @@ void main() async {
           ),
       '/LeaderBoard' : (context) => const LeaderBoard(),
       '/LoginPage': (context) => const LoginPage(),
-      '/ProfilePage': (context) => const ProfilePage(),
+      '/ProfilePage': (context) =>  ProfilePage(),
       '/RegisterPage': (context) => const RegisterPage(),
       '/VerifyUserEmail': (context) => const VerifyUserEmail(),
       '/OfflineProfilesSelection': (context) => const OfflineProfilesSelection(),

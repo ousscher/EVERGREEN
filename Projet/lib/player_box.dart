@@ -7,6 +7,7 @@ import 'package:sorttrash/BackEnd/DataBaseService/online_data_base_service.dart'
 import 'package:uuid/uuid.dart';
 
 
+import 'BackEnd/PlayerProgress/PlayerUtil/new_player.dart';
 import 'BackEnd/PlayerProgress/player.dart';
 
 
@@ -21,10 +22,10 @@ late Box onlineParentBox;
 DataBaseService offlineProgress = DataBaseService(offlineGlobalPlayers, offlineParent);
 Parent offlineParent = Parent([], 0, const Uuid().v4().toString());
 Parent onlineParent = Parent([], 0, const Uuid().v4().toString());
-PlayerProgress playerProgress = PlayerProgress(0, DataBaseService.newGameDataPlayer, DateTime.now(), 0, 'childsName', 'childGlobalUID', 'avatarProfileName', DateTime.now());
+PlayerProgress playerProgress = NewPlayerUtil.returnNewPlayer();
 OnlineDataBaseService onlineProgress = OnlineDataBaseService(playersOnline, onlineParent, decoyUID);
 String decoyUID = '';
-PlayerProgress globalChildSelector = PlayerProgress(0, DataBaseService.newGameDataPlayer, DateTime.now(), 15, 'childsName', 'childGlobalUID', 'avatarProfileName', DateTime.now());
+PlayerProgress globalChildSelector = NewPlayerUtil.returnNewPlayer();
 double globalVolumeMusicSettings = 1;
 AssetImage backgroundImage2 =  const AssetImage('assets/images/bg-image2.png');
 bool isLoggedInGlobalKey = false;

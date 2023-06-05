@@ -2,15 +2,24 @@ import 'package:audioplayers/audioplayers.dart';
 import 'package:flutter/material.dart';
 import 'package:sorttrash/StartPage/Silder.dart';
 import 'package:sorttrash/button.dart';
+
 final globalMusicPlayerStartPage = AudioPlayer();
 final globalSoundPlayerStartPage = AudioPlayer();
-final globalMusicCacheStartPage= AudioCache();
+final globalMusicCacheStartPage = AudioCache();
+
 class RoundButtonSettings extends StatelessWidget {
   final IconData myIcon;
   final SetVolumeFunction volumeSettingsFunction;
   final SetVolumeFunction volumeSettingsSoundFunction;
-  double value = 5;
-  RoundButtonSettings({super.key, required this.myIcon, required this.value, required this.volumeSettingsFunction, required this.volumeSettingsSoundFunction});
+  final double value;
+  final String href;
+  RoundButtonSettings(
+      {super.key,
+      required this.myIcon,
+      required this.value,
+      required this.volumeSettingsFunction,
+      required this.volumeSettingsSoundFunction,
+      required this.href});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -19,7 +28,7 @@ class RoundButtonSettings extends StatelessWidget {
             context: context,
             builder: (BuildContext context) {
               return AlertDialog(
-                // contentPadding: const EdgeInsets.all(20.0),
+                  // contentPadding: const EdgeInsets.all(20.0),
                   backgroundColor: Colors.transparent,
                   insetPadding: const EdgeInsets.all(10),
                   content: Center(
@@ -58,7 +67,7 @@ class RoundButtonSettings extends StatelessWidget {
                                             width: 1, color: Colors.black38),
                                         shape: RoundedRectangleBorder(
                                             borderRadius:
-                                            BorderRadius.circular(20)),
+                                                BorderRadius.circular(20)),
                                         padding: const EdgeInsets.only(
                                             left: 80,
                                             right: 80,
@@ -117,17 +126,16 @@ class RoundButtonSettings extends StatelessWidget {
                                   ),
                                   Container(
                                     height: 25,
-                                    width: 90+52,
+                                    width: 90 + 52,
                                     decoration: BoxDecoration(
                                       border: Border.all(
                                           width: 1, color: Colors.black),
                                       borderRadius: BorderRadius.circular(5),
-
                                     ),
                                     child: Center(
                                       child: Row(
                                         mainAxisAlignment:
-                                        MainAxisAlignment.center,
+                                            MainAxisAlignment.center,
                                         children: [
                                           const SizedBox(
                                             height: 25,
@@ -142,7 +150,7 @@ class RoundButtonSettings extends StatelessWidget {
                                                       fontSize: 25,
                                                       fontFamily: 'Digital',
                                                       fontWeight:
-                                                      FontWeight.bold),
+                                                          FontWeight.bold),
                                                 ),
                                               ),
                                             ),
@@ -150,9 +158,11 @@ class RoundButtonSettings extends StatelessWidget {
                                           Container(
                                             height: 25,
                                             width: 50,
-                                            decoration:  BoxDecoration(
-                                              borderRadius: BorderRadius.circular(5),
-                                              color: const Color.fromRGBO(62,206,254, 1),
+                                            decoration: BoxDecoration(
+                                              borderRadius:
+                                                  BorderRadius.circular(5),
+                                              color: const Color.fromRGBO(
+                                                  62, 206, 254, 1),
                                             ),
                                             child: const Center(
                                               child: Text(
@@ -161,7 +171,8 @@ class RoundButtonSettings extends StatelessWidget {
                                                     color: Colors.white,
                                                     fontSize: 17,
                                                     fontFamily: 'Digital',
-                                                    fontWeight: FontWeight.bold),
+                                                    fontWeight:
+                                                        FontWeight.bold),
                                               ),
                                             ),
                                           )
@@ -200,14 +211,14 @@ class RoundButtonSettings extends StatelessWidget {
                             ),
                           ),
                         ),
-                        const Positioned(
+                        Positioned(
                             left: 370,
                             top: 0,
                             child: RoundButton(
                               myIcon: Icons.exit_to_app,
-                              href: '/StartPage',
+                              href: href,
                               couleur: Color.fromRGBO(255, 210, 23, 5),
-                              shadowColor:Color.fromRGBO(255, 210, 23, 5) ,
+                              shadowColor: Color.fromRGBO(255, 210, 23, 5),
                             ))
                       ],
                     ),
@@ -218,7 +229,7 @@ class RoundButtonSettings extends StatelessWidget {
         height: 40.0,
         width: 40.0,
         decoration: BoxDecoration(
-          boxShadow:  const [
+          boxShadow: const [
             BoxShadow(
               color: Color.fromRGBO(255, 210, 23, 5),
               spreadRadius: 0,
@@ -234,7 +245,6 @@ class RoundButtonSettings extends StatelessWidget {
             height: 35.0,
             width: 35.0,
             decoration: BoxDecoration(
-
               color: const Color.fromRGBO(255, 210, 23, 5),
               borderRadius: BorderRadius.circular(100),
             ),
@@ -253,11 +263,17 @@ class RoundButtonSettings extends StatelessWidget {
 
 class RoundButtonSettingsWhileLogged extends StatelessWidget {
   final IconData myIcon;
-  double value = 5;
+  final double value;
   final SetVolumeFunction volumeSettingsFunction;
   final SetVolumeFunction volumeSettingsSoundFunction;
+  final String href;
   RoundButtonSettingsWhileLogged(
-      {super.key, required this.myIcon, required this.value, required this.volumeSettingsFunction, required this.volumeSettingsSoundFunction});
+      {super.key,
+      required this.myIcon,
+      required this.value,
+      required this.volumeSettingsFunction,
+      required this.volumeSettingsSoundFunction,
+      required this.href});
   @override
   Widget build(BuildContext context) {
     return InkWell(
@@ -312,10 +328,11 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor: Colors.greenAccent,
                                             side: const BorderSide(
-                                                width: 3, color: Colors.black38),
+                                                width: 3,
+                                                color: Colors.black38),
                                             shape: RoundedRectangleBorder(
                                                 borderRadius:
-                                                BorderRadius.circular(20)),
+                                                    BorderRadius.circular(20)),
                                             padding: const EdgeInsets.only(
                                                 left: 80,
                                                 right: 80,
@@ -337,7 +354,8 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                       const Text(
                                         'Music',
                                         style: TextStyle(
-                                          color: Color.fromRGBO(255, 210, 23, 5),
+                                          color:
+                                              Color.fromRGBO(255, 210, 23, 5),
                                           fontSize: 20,
                                           fontFamily: 'Digital',
                                           fontWeight: FontWeight.bold,
@@ -356,7 +374,8 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                       const Text(
                                         'Sound',
                                         style: TextStyle(
-                                          color: Color.fromRGBO(255, 210, 23, 5),
+                                          color:
+                                              Color.fromRGBO(255, 210, 23, 5),
                                           fontSize: 20,
                                           fontFamily: 'Digital',
                                           fontWeight: FontWeight.bold,
@@ -367,23 +386,25 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                       ),
                                       SilderMusic(
                                         value: value,
-                                        changeVolume: volumeSettingsSoundFunction,
+                                        changeVolume:
+                                            volumeSettingsSoundFunction,
                                       ),
                                       const SizedBox(
                                         height: 5,
                                       ),
                                       Container(
                                         height: 25,
-                                        width: 90+52,
+                                        width: 90 + 52,
                                         decoration: BoxDecoration(
                                           border: Border.all(
                                               width: 1, color: Colors.black),
-                                          borderRadius: BorderRadius.circular(5),
+                                          borderRadius:
+                                              BorderRadius.circular(5),
                                         ),
                                         child: Center(
                                           child: Row(
                                             mainAxisAlignment:
-                                            MainAxisAlignment.center,
+                                                MainAxisAlignment.center,
                                             children: [
                                               const SizedBox(
                                                 height: 25,
@@ -398,7 +419,7 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                                           fontSize: 25,
                                                           fontFamily: 'Digital',
                                                           fontWeight:
-                                                          FontWeight.bold),
+                                                              FontWeight.bold),
                                                     ),
                                                   ),
                                                 ),
@@ -406,9 +427,11 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                               Container(
                                                 height: 25,
                                                 width: 50,
-                                                decoration:  BoxDecoration(
-                                                  borderRadius: BorderRadius.circular(5),
-                                                  color: const Color.fromRGBO(62,206,254, 1),
+                                                decoration: BoxDecoration(
+                                                  borderRadius:
+                                                      BorderRadius.circular(5),
+                                                  color: const Color.fromRGBO(
+                                                      62, 206, 254, 1),
                                                 ),
                                                 child: const Center(
                                                   child: Text(
@@ -417,7 +440,8 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                                         color: Colors.white,
                                                         fontSize: 17,
                                                         fontFamily: 'Digital',
-                                                        fontWeight: FontWeight.bold),
+                                                        fontWeight:
+                                                            FontWeight.bold),
                                                   ),
                                                 ),
                                               )
@@ -435,7 +459,7 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                                         },
                                         style: ElevatedButton.styleFrom(
                                             backgroundColor:
-                                            Colors.lightBlueAccent,
+                                                Colors.lightBlueAccent,
                                             padding: const EdgeInsets.only(
                                                 left: 40,
                                                 right: 40,
@@ -457,12 +481,12 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                               ),
                             ),
                           ),
-                          const Positioned(
+                          Positioned(
                               left: 370,
                               top: 0,
                               child: RoundButton(
                                 myIcon: Icons.exit_to_app,
-                                href: '/StartPage',
+                                href: href,
                                 couleur: Color.fromRGBO(255, 210, 23, 5),
                                 shadowColor: Color.fromRGBO(255, 210, 23, 5),
                               ))
@@ -476,7 +500,7 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
         height: 40.0,
         width: 40.0,
         decoration: BoxDecoration(
-          boxShadow:  const [
+          boxShadow: const [
             BoxShadow(
               color: Color.fromRGBO(255, 210, 23, 5),
               spreadRadius: 0,

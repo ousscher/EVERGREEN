@@ -21,7 +21,7 @@ class PuzzleManagement{
     arrayOfPuzzlePieces: puzzleLevel2Array,
     arrayOfSquares: puzzleArray,
     matrixSSize: 4,
-    timeCount: 120,
+    timeCount: 300,
     changeBooleanStatus: level3.setIsLocked, imageName: 'assets/images/puzzle_level2.jpg',
   );
   late PuzzleLevel level3 = PuzzleLevel(
@@ -29,23 +29,23 @@ class PuzzleManagement{
     arrayOfPuzzlePieces: puzzleLevel3Array,
     arrayOfSquares: puzzleArray,
     matrixSSize: 4,
-    timeCount: 100,
+    timeCount: 600,
     changeBooleanStatus: level4.setIsLocked, imageName: 'assets/images/puzzle_level3.jpg',
   );
   late PuzzleLevel level4 = PuzzleLevel(
     isLocked: dataBaseService.returnLockedState(3,0),
-    arrayOfPuzzlePieces: puzzleLevel1Array,
+    arrayOfPuzzlePieces: puzzleLevel4Array,
     arrayOfSquares: puzzleArray,
     matrixSSize: 5,
-    timeCount: 120,
-    changeBooleanStatus: level5.setIsLocked, imageName: 'assets/images/puzzle_level4.jpg',
+    timeCount: 900,
+    changeBooleanStatus: level5.setIsLocked, imageName: 'assets/images/level_4.png',
   );
   late PuzzleLevel level5 = PuzzleLevel(
     isLocked: dataBaseService.returnLockedState(4,0),
     arrayOfPuzzlePieces: puzzleLevel1Array,
     arrayOfSquares: puzzleArray,
     matrixSSize: 5,
-    timeCount: 100,
+    timeCount: 1500,
     changeBooleanStatus: decoyMethod, imageName: 'assets/images/puzzle_level5.jpg',
   );
   bool decoyMethod(bool te) {

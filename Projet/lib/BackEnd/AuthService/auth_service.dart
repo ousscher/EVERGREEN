@@ -32,10 +32,6 @@ class AuthService {
           .signInWithEmailAndPassword(
           email: email, password: password);
      onlineProgress.setParent(await onlineParent.fetchParentData(FirebaseAuth.instance.currentUser!.uid)) ;
-     if (await onlineProgress.returnParent().isUserAlreadyLoggedIn()){
-       error = true;
-       errorMessage = 'check later';
-     }
     }
     on FirebaseAuthException   catch (e) {
       error  = true;

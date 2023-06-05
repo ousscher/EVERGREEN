@@ -1,4 +1,3 @@
-
 import 'package:audioplayers/audioplayers.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -13,14 +12,21 @@ class StartPage extends StatefulWidget {
   State<StartPage> createState() => _StartPageState();
 }
 
-
 class _StartPageState extends State<StartPage> {
-
   bool isSignedIn = false;
-  final roundButtonSettingsWhileLogged =  RoundButtonSettingsWhileLogged(
-    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume);
+  final roundButtonSettingsWhileLogged = RoundButtonSettingsWhileLogged(
+      href: '/StartPage',
+      myIcon: Icons.settings,
+      value: globalVolumeMusicSettings,
+      volumeSettingsFunction: globalMusicPlayerStartPage.setVolume,
+      volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume);
   final roundButtonSettings = RoundButtonSettings(
-    myIcon: Icons.settings, value: globalVolumeMusicSettings, volumeSettingsFunction: globalMusicPlayerStartPage.setVolume, volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume, );
+    href: '/StartPage',
+    myIcon: Icons.settings,
+    value: globalVolumeMusicSettings,
+    volumeSettingsFunction: globalMusicPlayerStartPage.setVolume,
+    volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume,
+  );
   final User? user = FirebaseAuth.instance.currentUser;
   @override
   void dispose() {
@@ -31,7 +37,6 @@ class _StartPageState extends State<StartPage> {
   @override
   void initState() {
     setState(() {
-
       globalMusicPlayerStartPage.setReleaseMode(ReleaseMode.loop);
       globalMusicPlayerStartPage.setVolume(0.5);
       globalMusicCacheStartPage.load("music/gamebackground.mp3");
@@ -78,7 +83,7 @@ class _StartPageState extends State<StartPage> {
                   ),
                   Container(
                     height: 150,
-                    width: 250 ,
+                    width: 250,
                     decoration: const BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage('assets/images/logo.png'),
@@ -96,14 +101,17 @@ class _StartPageState extends State<StartPage> {
                       height: 90,
                       child: Stack(
                         children: [
-                          const AnonButton(text: 'Jouer' ,href: '/ChildSelector',color: Color.fromRGBO(255, 210, 23, 5),),
+                          const AnonButton(
+                            text: 'Jouer',
+                            href: '/ChildSelector',
+                            color: Color.fromRGBO(255, 210, 23, 5),
+                          ),
                           Positioned(
                               left: 100,
                               bottom: 7,
-                              child: isSignedIn ?
-                              roundButtonSettingsWhileLogged
-                                  : roundButtonSettings
-                          ),
+                              child: isSignedIn
+                                  ? roundButtonSettingsWhileLogged
+                                  : roundButtonSettings),
                         ],
                       ),
                     ),
@@ -116,5 +124,4 @@ class _StartPageState extends State<StartPage> {
       ),
     );
   }
-
 }

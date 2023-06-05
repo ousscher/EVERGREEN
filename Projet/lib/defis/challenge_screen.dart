@@ -22,11 +22,13 @@ class ChallengesScreen extends StatefulWidget {
 class _ChallengesScreenState extends State<ChallengesScreen> {
   final AudioPlayer audioPlayer = AudioPlayer();
   final roundButtonSettingsWhileLogged = RoundButtonSettingsWhileLogged(
+      href: '/defis',
       myIcon: Icons.settings,
       value: globalVolumeMusicSettings,
       volumeSettingsFunction: globalMusicPlayerStartPage.setVolume,
       volumeSettingsSoundFunction: globalSoundPlayerStartPage.setVolume);
   final roundButtonSettings = RoundButtonSettings(
+      href: '/defis',
       myIcon: Icons.settings,
       value: globalVolumeMusicSettings,
       volumeSettingsFunction: globalMusicPlayerStartPage.setVolume,

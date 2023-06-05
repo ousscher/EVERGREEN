@@ -1,8 +1,6 @@
 
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:hive/hive.dart';
-import 'package:sorttrash/player_box.dart';
 
 part 'player.g.dart';
 
@@ -138,20 +136,6 @@ class Parent {
      print(e);
    }
   }
-  Future<bool> isUserAlreadyLoggedIn() async {
-    final User? user = FirebaseAuth.instance.currentUser;
-    final snapshot =
-    await FirebaseFirestore.instance.collection('parent').doc(user!.uid).get();
-    final deviceId = snapshot.data()!['parentUUID'];
-    print(deviceId);
-    print(parentUUID);
-    return deviceId != parentUUID;
-  }
-  void putOnlineDataToLocal() {
-    final User? user = FirebaseAuth.instance.currentUser;
-    if (user != null) {
-      onlineParentBox.put(user.uid, this);
-    }
-  }
+
 }
 
