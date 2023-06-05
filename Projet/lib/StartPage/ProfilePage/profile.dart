@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:percent_indicator/circular_percent_indicator.dart';
 import 'package:sorttrash/button.dart';
@@ -10,6 +11,7 @@ import 'no_player_page.dart';
 
 class ProfilePage extends StatelessWidget {
   ProfilePage({Key? key}) : super(key: key);
+  final User? user = FirebaseAuth.instance.currentUser;
   late final PlayerProgress playerProgress =
       currentProfileIndex == 1 && globalChildKey != -1
           ? offlineProgress.returnParent().children[globalChildKey]
@@ -27,7 +29,7 @@ class ProfilePage extends StatelessWidget {
               children: [
                 Container(
                   height: double.infinity,
-                  width: 0.2 * MediaQuery.of(context).size.width,
+                  width: 0.26 * MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                       color: Colors.redAccent,
                       border: Border.all(width: 2, color: Colors.indigo),
@@ -60,7 +62,7 @@ class ProfilePage extends StatelessWidget {
                               borderRadius: BorderRadius.circular(100),
                             )),
                         SizedBox(
-                          height: 0.09 * MediaQuery.of(context).size.height,
+                          height: 0.06 * MediaQuery.of(context).size.height,
                         ),
                         SingleChildScrollView(
                             scrollDirection: Axis.horizontal,
@@ -87,9 +89,31 @@ class ProfilePage extends StatelessWidget {
                                   fontSize: 18,
                                   decoration: TextDecoration.none),
                             )),
-                        SizedBox(
-                          height: 0.1 * MediaQuery.of(context).size.height,
-                        ),
+
+                        user != null && onlineGlobalChildKey != -1?ElevatedButton(
+                            onPressed: () async {
+                              FirebaseAuth auth = FirebaseAuth.instance;
+                              await auth.signOut();},
+                            style: ElevatedButton.styleFrom(
+                                backgroundColor: Colors.white,
+                                side: const BorderSide(
+                                    width: 2, color: Colors.black),
+                                elevation: 0,
+                                shape: RoundedRectangleBorder(
+                                    borderRadius: BorderRadius.circular(10)),
+                                padding: const EdgeInsets.only(
+                                    left: 30, right: 30, top: 8, bottom: 10)),
+                            child: Center(
+                              child: Text(
+                                "Déconnexion",
+                                style: TextStyle(
+                                  color: Colors.redAccent,
+                                  fontSize: 13,
+                                  fontFamily: 'Digital',
+                                  fontWeight: FontWeight.bold,
+                                ),
+                              ),
+                            )) :  SizedBox( height: 0.05*MediaQuery.of(context).size.width,),
                         InkWell(
                             onTap: () {
                               Navigator.pop(context);
@@ -106,7 +130,7 @@ class ProfilePage extends StatelessWidget {
                 Container(
                   height: double.infinity,
                   width: MediaQuery.of(context).size.width -
-                      0.2 * MediaQuery.of(context).size.width,
+                      0.26 * MediaQuery.of(context).size.width,
                   decoration: BoxDecoration(
                     color: Color.fromRGBO(255, 245, 238, 0.1),
                   ),
@@ -124,7 +148,7 @@ class ProfilePage extends StatelessWidget {
                         percentage: this.playerStatsUtil.calculateTotal() / 25,
                       ),
                       SizedBox(
-                        width: 0.09 * MediaQuery.of(context).size.height,
+                        width: 0.04 * MediaQuery.of(context).size.height,
                       ),
                       ProgressBar(
                         innerString: this
@@ -139,7 +163,7 @@ class ProfilePage extends StatelessWidget {
                                 24,
                       ),
                       SizedBox(
-                        width: 0.09 * MediaQuery.of(context).size.height,
+                        width: 0.04 * MediaQuery.of(context).size.height,
                       ),
                       ProgressBar(
                         color: Colors.cyanAccent,
@@ -197,16 +221,15 @@ class ProgressBar extends StatelessWidget {
           center: new Text(
             innerString,
             style: TextStyle(
-              fontWeight: FontWeight.bold,
-              fontFamily: 'Digital',
-              fontSize: 24
-            ),
+                fontWeight: FontWeight.bold,
+                fontFamily: 'Digital',
+                fontSize: 24),
           ),
           progressColor: color,
           backgroundColor: backGroundColor,
         ),
         SizedBox(
-          height: 0.0333333 * MediaQuery.of(context).size.height,
+          height: 0.01 * MediaQuery.of(context).size.height,
         ),
         Text(
           text,
