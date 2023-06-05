@@ -2,7 +2,7 @@ import 'package:uuid/uuid.dart';
 
 import '../../player_box.dart';
 import '../PlayerProgress/player.dart';
-
+// class pour gérer la base du données et user actuelle localement
 class DataBaseService {
   static final List<LevelsCompleted> newGameDataPlayer = [
     LevelsCompleted(1, '100000000000000000000000000000000000000000000000'),
@@ -10,17 +10,36 @@ class DataBaseService {
     LevelsCompleted(3, '100000000000000000000000000000000000000000000000'),
     LevelsCompleted(4, '100000000000000000000000000000000000000000000000'),
   ];
-  List<PlayerProgress> _players = [];
+  List<PlayerProgress> _players = []; // un  liste du enfants du parent actuel 
   late Parent _parent = Parent([], 0, const Uuid().v4().toString());
   DataBaseService(List<PlayerProgress> players, Parent parent) {
     _parent = parent;
     _players = players;
   }
+  // ajouter un enfant
   addElementProgress(String childName, int childAge, String profileImage) {
-    if (!(childName == '' || childAge >= 100 || childAge <= 3)) {
+    if (!(childName == '' || childAge >= 100 || childAge <= 3)) { // verification d'age
       int index = 0;
-      if (parentBox.isEmpty) {
-        index = _parent.numberOfChildren;
+      if (parentBox.isEmpty) { // si la base est vide
+        index = _parent.numberOfChildren; // nous obtenons le nombre actuel de joueurs du parent pour servir d'index pour en ajouter un nouveau
+        _players.add(PlayerProgress( // nous ajoutons un nouveau joueur nous avons de nouvelles données
+            0,
+            [
+              LevelsCompleted(1, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(2, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(3, '100000000000000000000000000000000000000000000000'),
+              LevelsCompleted(4, '100000000000000000000000000000000000000000000000'),
+            ],
+            DateTime.now(),
+            index,
+            childName,
+            '$childName-${const Uuid().v4().toString().substring(0, 8)}',profileImage,DateTime.now()));
+        _parent.children = _players.toList(); // on mis a jour la liste des enfants acutelle 
+        _parent.numberOfChildren++; // nous mettons à jour la liste des enfants pour le parent actuel
+        parentBox.add(_parent); // on mis a jour le parent dans la base des données
+      } else { // si la base des données n'est pas vide
+        _parent = parentBox.getAt(0); // on récuper le parent d'apres la base
+        index = _parent.numberOfChildren; // nous obtenons le nombre actuel de joueurs du parent pour servir d'index pour en ajouter un nouveau
         _players.add(PlayerProgress(
             0,
             [
@@ -33,31 +52,13 @@ class DataBaseService {
             index,
             childName,
             '$childName-${const Uuid().v4().toString().substring(0, 8)}',profileImage,DateTime.now()));
-        _parent.children = _players.toList();
+        _parent.children = _players.toList(); 
         _parent.numberOfChildren++;
-        parentBox.add(_parent);
-      } else {
-        _parent = parentBox.getAt(0);
-        index = _parent.numberOfChildren;
-        _players.add(PlayerProgress(
-            0,
-            [
-              LevelsCompleted(1, '100000000000000000000000000000000000000000000000'),
-              LevelsCompleted(2, '100000000000000000000000000000000000000000000000'),
-              LevelsCompleted(3, '100000000000000000000000000000000000000000000000'),
-              LevelsCompleted(4, '100000000000000000000000000000000000000000000000'),
-            ],
-            DateTime.now(),
-            index,
-            childName,
-            '$childName-${const Uuid().v4().toString().substring(0, 8)}',profileImage,DateTime.now()));
-        _parent.children = _players.toList();
-        _parent.numberOfChildren++;
-        parentBox.putAt(0, _parent);
+        parentBox.putAt(0, _parent); // enregistrer les nouvelles données dans la base de données
       }
     }
   }
-
+  // Retourne l'état de verrouillage d'un niveau dans une bit map
   bool returnLockedState(int index, int levelNumber) {
     try {
       _parent = parentBox.getAt(0);
@@ -75,6 +76,7 @@ class DataBaseService {
       return false;
     }
   }
+  // Retourne l'état de verrouillage du défi
   bool returnChallengeLockedState(int index, int levelNumber){
     try {
       _parent = parentBox.getAt(0);
@@ -99,10 +101,12 @@ class DataBaseService {
     }
     return true;
   }
+  // fonction pour vérifier si la date2 est après la date1 de plus d'un jour
   bool isExactlyOneDayApart(DateTime date1, DateTime date2) {
     final difference = date2.difference(date1);
     return difference.inDays.abs() >= 1;
   }
+  // Procedure qui permet de supprimer un enfant 
   deleteElementProgress(PlayerProgress playerProgress) {
     _parent.numberOfChildren--;
     print(_players.length);
@@ -116,7 +120,7 @@ class DataBaseService {
     _parent.children = _players;
     parentBox.putAt(0, _parent);
   }
-
+  // procédure qui permet de faire des mises à jour sur les données de l'utilisateur 
   updateElementProgress(
       PlayerProgress playerProgress, String childName, int childAge) {
     if (!(childName == '' || childAge >= 100 || childAge <= 3)) {
@@ -140,7 +144,7 @@ class DataBaseService {
   Parent returnParent() {
     return _parent;
   }
-
+  
   List<PlayerProgress> returnPlayers() {
     return _players;
   }

@@ -5,22 +5,22 @@ import 'package:audioplayers/audioplayers.dart';
 import '../../composents/game_settings.dart';
 import 'package:audioplayers/audioplayers.dart' as audio;
 
-final _player = AudioPlayer();
+final _player = AudioPlayer(); 
 bool Indi = false;
 
 class Indication {
-  String text;
-  String SoundPath;
+  String text; //le corps de l'indication
+  String SoundPath; //le son 
   Indication({required this.text, required this.SoundPath});
 }
 
 class EXPLICATION {
-  String text;
-  String SoundPath;
+  String text; //corps
+  String SoundPath; //son
   EXPLICATION({required this.text, required this.SoundPath});
 }
 
-class QuizMultiples extends StatefulWidget {
+class QuizMultiples extends StatefulWidget { //le ui et le corps des quiz multiples
   final String question;
   final String reponse1;
   final String reponse2;
@@ -50,11 +50,11 @@ class _QuizMultiplesState extends State<QuizMultiples> {
   audio.AudioPlayer audioPlayer = audio.AudioPlayer();
   AudioCache audioCache = AudioCache();
   final _audio = AudioCache();
-  int? reponseUtilisateur;
-  String showState = "none";
+  int? reponseUtilisateur; //la reponse d'utilisateur
+  String showState = "none"; //pour afficher si vert si juste, rouge si faux ou rien si n'est pas selectionné
 
   Future<void> waitAndPop() async {
-    await Future.delayed(const Duration(seconds: 1));
+    await Future.delayed(const Duration(seconds: 1)); //attendre une seconde avant le retour à l'ancienne page
     Navigator.pop(context, false);
     // Navigator.push(context, MaterialPageRoute(builder: ((context) => const ExplicationPage(Explication: "Explication"))));
   }
@@ -137,8 +137,8 @@ class _QuizMultiplesState extends State<QuizMultiples> {
                   ],
                 ),
                 Row(
-                  children: [
-                    GamesSettings(
+                  children: [ 
+                    GamesSettings( //le boutton des parametres
                       functionToBeUsed: replay,
                       functionToResumeTimer: decoy,
                       functionToStopTimer: decoy,
