@@ -50,7 +50,7 @@ class _OnlineProfilesSelection extends State<OnlineProfilesSelection> {
                       size: 100,
                     ),
                     Text(
-                      'Please Sign IN',
+                      'Veuillez Vous Connecter',
                       style: TextStyle(
                           fontSize: 50,
                           color: Colors.redAccent,

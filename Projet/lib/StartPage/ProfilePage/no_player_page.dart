@@ -22,7 +22,7 @@ class NoPlayerSelectedPage extends StatelessWidget {
                   size: 100,
                 ),
                 Text(
-                  'Please Sign IN',
+                  'Veuillez vous connecter',
                   style: TextStyle(
                       fontSize: 50,
                       color: Colors.redAccent,
