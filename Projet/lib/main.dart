@@ -67,7 +67,7 @@ void main() async {
   runApp(MaterialApp(
     navigatorKey: navigatorKey,
     initialRoute:
-        '/ResetPasswordButton', //le widget Niveaux sera utilisé pour l'affichage du niveaux, lors de la construction on lui fais passer le nombre de niveaux aux total et le nombre de niveaux unlocked et le href qui sera un routename pour lier
+        '/StartPage', //le widget Niveaux sera utilisé pour l'affichage du niveaux, lors de la construction on lui fais passer le nombre de niveaux aux total et le nombre de niveaux unlocked et le href qui sera un routename pour lier
     routes: {
       '/StartPage': (context) => const StartPage(),
       '/': (context) => const mainMenu(),

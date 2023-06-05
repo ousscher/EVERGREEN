@@ -95,23 +95,20 @@ class _StartPageState extends State<StartPage> {
                     height: 10,
                   ),
                   Padding(
-                    padding: const EdgeInsets.only(left: 50),
-                    child: SizedBox(
-                      width: 150,
-                      height: 90,
-                      child: Stack(
+
+                    padding: const EdgeInsets.only(left: 65.0),
+                    child: Center(
+                      child: Row(
                         children: [
                           const AnonButton(
                             text: 'Jouer',
                             href: '/ChildSelector',
                             color: Color.fromRGBO(255, 210, 23, 5),
                           ),
-                          Positioned(
-                              left: 100,
-                              bottom: 7,
-                              child: isSignedIn
-                                  ? roundButtonSettingsWhileLogged
-                                  : roundButtonSettings),
+                          const SizedBox(width: 20,),
+                          isSignedIn
+                              ? AnonButton(href: '/ProfilePage' , color: Color.fromRGBO(255, 210, 23, 5),text: 'Profile',)
+                              : AnonButton(href: '/LoginPage' , color: Color.fromRGBO(255, 210, 23, 5),text: 'Connecter',),
                         ],
                       ),
                     ),
@@ -125,3 +122,4 @@ class _StartPageState extends State<StartPage> {
     );
   }
 }
+

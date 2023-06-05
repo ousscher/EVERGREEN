@@ -1,6 +1,5 @@
 
 import 'package:flutter/material.dart';
-import 'package:sorttrash/StartPage/choose_children/choose_child_profile_main.dart';
 
 import '../player_box.dart';
 
@@ -15,20 +14,7 @@ class AnonButton extends StatelessWidget {
     return ElevatedButton(
         onPressed: ()  {
           getProgress();
-          Navigator.push(
-            context,
-            PageRouteBuilder(
-              transitionDuration: const Duration(milliseconds: 2500),
-              pageBuilder: (context, animation, secondaryAnimation) => const AnonChildSelector(),
-              transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                return ScaleTransition(
-                  scale: animation,
-                  child: child,
-                );
-              },
-            ),
-          );
-
+          Navigator.pushNamed(context, href);
         },
         style: ElevatedButton.styleFrom(
             backgroundColor: color,

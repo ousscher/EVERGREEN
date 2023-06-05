@@ -36,86 +36,105 @@ class _OfflineProfileDataContainerState
                   border: Border.all(
                       width: 2, color: color), // Set the border color here
                 ),
-                child: ListTile(
-                  shape: RoundedRectangleBorder(
-                    side: BorderSide(width: 2, color: color),
-                    borderRadius: BorderRadius.circular(20),
-                  ),
-                  leading: const Icon(
-                    Icons.child_care,
-                  ),
-                  title: Text('UserName : ${widget.playerProgress.childsName} ',
-                      style: const TextStyle(fontFamily: 'Digital')),
-                  subtitle: Text(
-                      'ID: ${widget.playerProgress.childID}  \nLast Time Played :${widget.playerProgress.lastTimeToJoin} ',
-                      style: const TextStyle(fontFamily: 'Digital')),
-                  trailing: InkWell(
-                      onTap: () {
-                        showDialog(
-                          context: context,
-                          builder: (BuildContext context) {
-                            String childName = '';
-                            int? childAge;
-                            return SingleChildScrollView(
-                              child: AlertDialog(
-                                title: const Text('Enter Child Information',
-                                    style: TextStyle(fontFamily: 'Digital')),
-                                content: Column(
-                                  mainAxisSize: MainAxisSize.min,
-                                  children: [
-                                    TextFormField(
-                                      decoration: const InputDecoration(
-                                          labelText: 'Nom'),
-                                      onChanged: (value) => childName = value,
+                child: InkWell(
+                  onTap: (){
+                    setState(() {
+                      _setOfflineChild(widget.playerProgress);
+                      FloatingSnackBar(
+                        message:
+                        '🐧 : Offline Profile Number : $globalChildKey Selected. \n⛔ : Online Profile is Unselected.',
+                        context: context,
+                        textColor: Colors.black,
+                        textStyle: const TextStyle(
+                            color: Colors.white,
+                            fontFamily: 'Digital',
+                            fontSize: 16),
+                        duration: const Duration(milliseconds: 1500),
+                        backgroundColor: Colors.indigo,
+                      );
+                    });
+                  },
+                  child: ListTile(
+                    shape: RoundedRectangleBorder(
+                      side: BorderSide(width: 2, color: color),
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    leading: const Icon(
+                      Icons.child_care,
+                    ),
+                    title: Text('UserName : ${widget.playerProgress.childsName} ',
+                        style: const TextStyle(fontFamily: 'Digital')),
+                    subtitle: Text(
+                        'ID: ${widget.playerProgress.childID}  \nLast Time Played :${widget.playerProgress.lastTimeToJoin} ',
+                        style: const TextStyle(fontFamily: 'Digital')),
+                    trailing: InkWell(
+                        onTap: () {
+                          showDialog(
+                            context: context,
+                            builder: (BuildContext context) {
+                              String childName = '';
+                              int? childAge;
+                              return SingleChildScrollView(
+                                child: AlertDialog(
+                                  title: const Text('Enter Child Information',
+                                      style: TextStyle(fontFamily: 'Digital')),
+                                  content: Column(
+                                    mainAxisSize: MainAxisSize.min,
+                                    children: [
+                                      TextFormField(
+                                        decoration: const InputDecoration(
+                                            labelText: 'Nom'),
+                                        onChanged: (value) => childName = value,
+                                      ),
+                                      TextFormField(
+                                        decoration: const InputDecoration(
+                                            labelText: 'Age'),
+                                        keyboardType: TextInputType.number,
+                                        onChanged: (value) =>
+                                            childAge = int.tryParse(value) ?? 0,
+                                      ),
+                                    ],
+                                  ),
+                                  actions: [
+                                    ElevatedButton(
+                                      onPressed: () {
+                                        setState(() {
+                                          widget.playerProgress.childsName = childName;
+                                          offlineProgress.setChild(playerProgress.childID, widget.playerProgress);
+                                          parentBox.putAt(0, offlineProgress.returnParent());
+                                        });
+                                        Navigator.pop(context);
+                                      },
+                                      child: const Text(
+                                        'Save',
+                                        style: TextStyle(fontFamily: 'Digital'),
+                                      ),
                                     ),
-                                    TextFormField(
-                                      decoration: const InputDecoration(
-                                          labelText: 'Age'),
-                                      keyboardType: TextInputType.number,
-                                      onChanged: (value) =>
-                                          childAge = int.tryParse(value) ?? 0,
+                                    ElevatedButton(
+                                      onPressed: () {
+                                       setState(() {
+                                         offlineProgress.deleteElementProgress(widget.playerProgress);
+                                         offlineProgress.setPlayers(offlineProgress.returnPlayers());
+                                         globalChildKey = -1;
+                                       });
+                                        Navigator.popAndPushNamed(context, '/ChildSelector');
+                                      },
+                                      child: const Text(
+                                        'Delete',
+                                        style: TextStyle(fontFamily: 'Digital'),
+                                      ),
                                     ),
                                   ],
                                 ),
-                                actions: [
-                                  ElevatedButton(
-                                    onPressed: () {
-                                      setState(() {
-                                        widget.playerProgress.childsName = childName;
-                                        offlineProgress.setChild(playerProgress.childID, widget.playerProgress);
-                                        parentBox.putAt(0, offlineProgress.returnParent());
-                                      });
-                                      Navigator.pop(context);
-                                    },
-                                    child: const Text(
-                                      'Save',
-                                      style: TextStyle(fontFamily: 'Digital'),
-                                    ),
-                                  ),
-                                  ElevatedButton(
-                                    onPressed: () {
-                                     setState(() {
-                                       offlineProgress.deleteElementProgress(widget.playerProgress);
-                                       offlineProgress.setPlayers(offlineProgress.returnPlayers());
-                                       globalChildKey = -1;
-                                     });
-                                      Navigator.popAndPushNamed(context, '/ChildSelector');
-                                    },
-                                    child: const Text(
-                                      'Delete',
-                                      style: TextStyle(fontFamily: 'Digital'),
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            );
-                          },
-                        );
-                      },
-                      child: const Icon(
-                        Icons.edit,
-                        size: 35,
-                      )),
+                              );
+                            },
+                          );
+                        },
+                        child: const Icon(
+                          Icons.edit,
+                          size: 35,
+                        )),
+                  ),
                 ),
               ),
             ),
