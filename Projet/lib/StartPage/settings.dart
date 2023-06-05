@@ -212,7 +212,7 @@ class RoundButtonSettings extends StatelessWidget {
                           ),
                         ),
                         Positioned(
-                            left: 370,
+                            left: 380,
                             top: 0,
                             child: RoundButton(
                               myIcon: Icons.exit_to_app,
@@ -482,7 +482,7 @@ class RoundButtonSettingsWhileLogged extends StatelessWidget {
                             ),
                           ),
                           Positioned(
-                              left: 370,
+                              left: 380,
                               top: 0,
                               child: RoundButton(
                                 myIcon: Icons.exit_to_app,

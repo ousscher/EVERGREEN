@@ -1,3 +1,4 @@
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:sorttrash/BackEnd/AuthService/user_info.dart';
 import 'package:sorttrash/player_box.dart';
@@ -24,6 +25,15 @@ class AuthService {
       print(e.toString());
       return null;
     }
+  }
+  Future<void> resetPassword(String email) async {
+    try {
+      await FirebaseAuth.instance.sendPasswordResetEmail(email: email);
+    } catch (e) {
+      error  = true;
+      errorMessage = e.toString();
+    }
+
   }
 
   Future logIn( String email, String password ) async {

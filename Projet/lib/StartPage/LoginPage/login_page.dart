@@ -128,10 +128,21 @@ class _LoginPageState extends State<LoginPage> {
                                       controller: password,
                                       hint: 'Entrez votre mot de passe !',
                                       obscureText: true),
-                                  RegisterLoggingButton(
-                                    description: 'Inscrivez-vous ici !',
-                                    href: '/RegisterPage',
+                                  FittedBox(
+                                    child: Row(
+                                      children: [
+                                        RegisterLoggingButton(
+                                          description: 'Inscrivez-vous',
+                                          href: '/RegisterPage',
+                                        ),
+                                        RegisterLoggingButton(
+                                          description: 'Réinitialiser le mot de passe',
+                                          href: '/ResetPasswordButton',
+                                        ),
+                                      ],
+                                    ),
                                   ),
+
                                   SizedBox(
                                     height: 0.02*MediaQuery.of(context).size.height,
                                   ),

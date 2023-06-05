@@ -23,7 +23,7 @@ class _RegisterLoggingButton extends State<RegisterLoggingButton> {
           mainAxisAlignment: MainAxisAlignment.center,
           children:  [
             const Text(
-              ' Or ',
+              ' Ou ',
               style: TextStyle(
                   fontWeight: FontWeight.bold,
                   color: Colors.black87,

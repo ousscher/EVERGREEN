@@ -1,6 +1,7 @@
 
 
 
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
@@ -20,6 +21,7 @@ import 'Puzzle/Models/puzzle_management.dart';
 import 'Puzzle/puzzle_levels.dart';
 import 'StartPage/LoginPage/login_page.dart';
 import 'StartPage/RegisterPage/register_page.dart';
+import 'StartPage/ResetPassword/reset_password.dart';
 import 'StartPage/choose_children/Leader/leader.dart';
 import 'StartPage/choose_children/offlineSelection/offline_child_profiles.dart';
 import 'StartPage/start_page.dart';
@@ -65,7 +67,7 @@ void main() async {
   runApp(MaterialApp(
     navigatorKey: navigatorKey,
     initialRoute:
-        '/StartPage', //le widget Niveaux sera utilisé pour l'affichage du niveaux, lors de la construction on lui fais passer le nombre de niveaux aux total et le nombre de niveaux unlocked et le href qui sera un routename pour lier
+        '/ResetPasswordButton', //le widget Niveaux sera utilisé pour l'affichage du niveaux, lors de la construction on lui fais passer le nombre de niveaux aux total et le nombre de niveaux unlocked et le href qui sera un routename pour lier
     routes: {
       '/StartPage': (context) => const StartPage(),
       '/': (context) => const mainMenu(),
@@ -105,6 +107,7 @@ void main() async {
       '/conseils': (context) => Conseils(),
       "/defis" : (context) => const ChallengesScreen(),
       '/levelsStory': (context) => levelsStory(nbrKeys: 100,),
+      '/ResetPasswordButton' : (context) => ResetPasswordButton()
     },
   ));
 }

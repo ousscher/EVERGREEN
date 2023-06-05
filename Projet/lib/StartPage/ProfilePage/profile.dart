@@ -93,7 +93,8 @@ class ProfilePage extends StatelessWidget {
                         user != null && onlineGlobalChildKey != -1?ElevatedButton(
                             onPressed: () async {
                               FirebaseAuth auth = FirebaseAuth.instance;
-                              await auth.signOut();},
+                              await auth.signOut();
+                              Navigator.pushNamed(context, '/StartPage');},
                             style: ElevatedButton.styleFrom(
                                 backgroundColor: Colors.white,
                                 side: const BorderSide(
