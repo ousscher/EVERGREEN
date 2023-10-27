@@ -28,28 +28,18 @@ Ce jeu est utilisé par :
 | move clair | ![#DD67ED](https://via.placeholder.com/10/DD67ED?text=+) #DD67ED |
 
 
-## Documentationt
-
-* [Node js documentation](https://nodejs.org/en/docs)
-* [Mysql documentation](https://dev.mysql.com/doc/)
-* [Vite js guide](https://vitejs.dev/guide/)
-* [React js documentation](https://www.youtube.com/watch?v=isqtQmWpDtg)
-* [Tailwind documentation](http://myreader.toile-libre.org/Documentation_QMC.pdf)
-* [Full Modern React Tutorial](https://youtube.com/playlist?list=PL4cUxeGkcC9gZD-Tvwfod2gaISzfRiP9d)
-* [Node.js Tutorial](https://www.youtube.com/watch?v=Oe421EPjeBE&t=7580s&ab_channel=freeCodeCamp.org)
 
 ## Guide d'utilisation
 
-* [Notice d’utilisation PDF](https://drive.google.com/file/d/15pvIBdh433kdoaZFarJ6HDvtEIEubvBt/view?usp=sharing)
+* [Notice d’utilisation PDF](https://drive.google.com/file/d/1eJQVIbXojgwJAjK8qin-A1Yq0Aaun63N/view?usp=sharing)
 
 
 ## Guide d’installation
 
-* [Notice d’installation PDF](https://drive.google.com/file/d/17J-eyQeBiMzGNhOoTtDVaFNQkcMr2Ug_/view?usp=sharing)
+* [Notice d’installation PDF](https://drive.google.com/file/d/1Ip1xgkHyk78BL5WucTI9bh4KQ6w3NnVH/view?usp=sharing)
 
 
 ## Remerciement
 
-* Nous souhaitons exprimer nos sincères remerciements à Mme Daoudi A. et Mme Ayad K. pour leur encadrement précieux tout au long de ce projet. Leur expertise, leurs conseils et leur soutien nous ont permis de mener à bien notre travail.
-* Nous tenons également à remercier [Louggani Abderaouf](https://github.com/rx0f) pour son orientation et son aide précieuse dans la phase de réalisation.
-* Enfin, un grand merci à vous, utilisateurs de notre projet, pour votre confiance et l'utilisation de notre produit au service de votre association caritative.
+* Nous souhaitons exprimer nos sincères remerciements à Mr Balla A. et Mme Bourai S. pour leur encadrement précieux tout au long de ce projet. Leur expertise, leurs conseils et leur soutien nous ont permis de mener à bien notre travail.
+* Un grand merci à vous, utilisateurs de notre projet, pour votre confiance et l'utilisation de notre produit au service de votre association caritative.
