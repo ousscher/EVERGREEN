@@ -1,16 +1,37 @@
-# EVERGREEN
 
-To start wokring please do this following steps : 
-- Clone the repository.
-- Navigate to the project directory.
-- Change to the client folder using the command "cd Projet".
-- Create your branch by do this following command : "git checkout -b "YourName/YourTask"
-- To confirm that you are in your branch do this following commande : "git branch". Your branch should be highlighted in a different color than the other branches.
-- You can now work on your local branch. When you are ready to push your changes, follow these steps:
--           -- Use the command "git add *" to stage your changes.
--           -- Use the command "git commit -m "message or comment"" to commit your changes with a message.
--           -- Use the command "git push origin YourName/YourTask" to push your changes to the remote repository.
-- The changes should now be updated on the remote repository.
-- now you can now delete the branch created by do this 2 commandes : "git checkout main" for move to the main branch, than "git branch -d "YourName/YourTask""
-- Sometimes, you may need to use the "pull" command to refresh your local files.
 
+Projet 2CP -Site web pour une association caritative-
+"Fondation Cœur Espoir" est une association caritative inexistante qui a été créée dans le but de développer ce site web pour une cause caritative.
+
+Utilisé par
+Ce projet est utilisé par : -toute personne intéressée par la cause caritative soutenue par la Fondation Cœur Espoir. Il est ouvert à tous, qu'il s'agisse de bénévoles, de nécessiteux, de donateurs potentiels, de membres de l'association ou de toute personne souhaitant en savoir plus sur les actions menées par la Fondation et participer à sa mission philanthropique.
+
+Auteurs
+ABDELKEBIR Achraf
+BAITECHE SAMI
+MELZI Amine
+BOUACHA Chamel Nadir
+BENSTAALI Mohamed Aniss
+BENYAHIA Yahia Abdeldjalil
+Charte graphique
+Couleur	Code Hexadécimal
+bleu acier	#4E6E81 #4E6E81
+beige clair	#F9DBBB #F9DBBB
+rouge vif	#FF0303 #FF0303
+bleu nuit	#2E3840 #2E3840
+Documentation
+Node js documentation
+Mysql documentation
+Vite js guide
+React js documentation
+Tailwind documentation
+Full Modern React Tutorial
+Node.js Tutorial
+Guide d'utilisation
+Notice d’utilisation PDF
+Guide d’installation
+Notice d’installation PDF
+Remerciement
+Nous souhaitons exprimer nos sincères remerciements à Mme Daoudi A. et Mme Ayad K. pour leur encadrement précieux tout au long de ce projet. Leur expertise, leurs conseils et leur soutien nous ont permis de mener à bien notre travail.
+Nous tenons également à remercier Louggani Abderaouf pour son orientation et son aide précieuse dans la phase de réalisation.
+Enfin, un grand merci à vous, utilisateurs de notre projet, pour votre confiance et l'utilisation de notre produit au service de votre association caritative.
