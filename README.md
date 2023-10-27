@@ -22,10 +22,10 @@ Ce jeu est utilisé par :
 
 | Couleur             | Code Hexadécimal                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| bleu clair | ![#4CDAFE] #4CDAFE |
-| beige foncé | ![#FFD217](https://via.placeholder.com/10/F9DBBB?text=+) #FFD217 |
-| vert | ![#67EB00](https://via.placeholder.com/10/FF0303?text=+) #67EB00 |
-| move clair | ![#DD67ED](https://via.placeholder.com/10/2E3840?text=+) #DD67ED |
+| bleu clair | ![#4CDAFE](https://via.placeholder.com/10/4CDAFE?text=+) #4CDAFE |
+| beige foncé | ![#FFD217](https://via.placeholder.com/10/FFD217?text=+) #FFD217 |
+| vert | ![#67EB00](https://via.placeholder.com/10/67EB00?text=+) #67EB00 |
+| move clair | ![#DD67ED](https://via.placeholder.com/10/DD67ED?text=+) #DD67ED |
 
 
 ## Documentationt
