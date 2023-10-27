@@ -1,4 +1,4 @@
-<p align="center"> <img src="https://i.ibb.co/7jXGRDf/Logo-1.png" /> </p>
+<p align="center"> <img src="Projet/assets/images/logo.png" /> </p>
 
 ## Projet 2CP -Site web pour une association caritative-
 
