@@ -1,34 +1,34 @@
 <p align="center"> <img src="Projet/assets/images/logo.png" /> </p>
 
-## Projet 2CP -Site web pour une association caritative-
+## Projet 2CP - Jeu mobile pour la protection de l'environnement -
 
-"Fondation Cœur Espoir" est une association caritative inexistante qui a été créée dans le but de développer ce site web pour une cause caritative.
+"EVERGREEN", le jeu mobile engagé pour la protection de l'environnement.
 
 ## Utilisé par
 
-Ce projet est utilisé par :
--toute personne intéressée par la cause caritative soutenue par la Fondation Cœur Espoir. Il est ouvert à tous, qu'il s'agisse de bénévoles, de nécessiteux, de donateurs potentiels, de membres de l'association ou de toute personne souhaitant en savoir plus sur les actions menées par la Fondation et participer à sa mission philanthropique.
+Ce jeu est utilisé par :
+- Un public varié, y compris les enfants âgés de 7 ans et plus qui ont déjà acquis la capacité de lire. Offrant une expérience éducative divertissante, il encourage les jeunes à s'immerger dans un monde virtuel tout en apprenant les valeurs de la durabilité et de la préservation de notre planète.
 
 ## Auteurs
 
-* [ABDELKEBIR Achraf](https://github.com/aachraf94)
-* [BAITECHE SAMI](https://github.com/Samibaiteche)
-* [MELZI Amine](https://github.com/Amine1820)
-* [BOUACHA Chamel Nadir](https://github.com/Chamiln17)
-* [BENSTAALI Mohamed Aniss](https://github.com/AnissBenstaali)
-* [BENYAHIA Yahia Abdeldjalil](https://github.com/yahiaDZz)
+* [CHERGUELAINE Oussama](https://github.com/ousscher)
+* [MAHRAZ Abderahman]
+* [BELHARDA Aya]
+* [KADRI Lyna]
+* [TOUTOU Salsabila]
+* [CHERRAF Nourelhouda]
 
 ## Charte graphique
 
 | Couleur             | Code Hexadécimal                                                                |
 | ----------------- | ------------------------------------------------------------------ |
-| bleu acier | ![#4E6E81](https://via.placeholder.com/10/4E6E81?text=+) #4E6E81 |
-| beige clair | ![#F9DBBB](https://via.placeholder.com/10/F9DBBB?text=+) #F9DBBB |
-| rouge vif | ![#FF0303](https://via.placeholder.com/10/FF0303?text=+) #FF0303 |
-| bleu nuit | ![#2E3840](https://via.placeholder.com/10/2E3840?text=+) #2E3840 |
+| bleu clair | ![#4CDAFE](https://via.placeholder.com/10/4E6E81?text=+) #4CDAFE |
+| beige foncé | ![#FFD217](https://via.placeholder.com/10/F9DBBB?text=+) #FFD217 |
+| vert | ![#67EB00](https://via.placeholder.com/10/FF0303?text=+) #67EB00 |
+| move clair | ![#DD67ED](https://via.placeholder.com/10/2E3840?text=+) #DD67ED |
 
 
-## Documentation
+## Documentationt
 
 * [Node js documentation](https://nodejs.org/en/docs)
 * [Mysql documentation](https://dev.mysql.com/doc/)
